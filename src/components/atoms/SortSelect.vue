@@ -53,7 +53,7 @@ export default {
 
 .select-arrow-down {
 	position: absolute;
-	top: 2px;
+	top: 0px;
 	right: 0;
 	margin: 0.4rem;
 	pointer-events: none;
@@ -62,6 +62,10 @@ export default {
 @media (min-width: 460px) {
 	.sort-select-wrapper {
 		max-width: 240px;
+	}
+
+	.select-arrow-down {
+		top: 2px;
 	}
 }
 </style>

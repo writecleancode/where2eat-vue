@@ -87,11 +87,11 @@ export default {
 	&.reversed {
 		text-align: right;
 
-		.styled-nav-link::before {
+		&::before {
 			background-image: linear-gradient(-90deg, #d9d9d9 0%, #e5e5e500 85%);
 		}
 
-		.styled-nav-link::after {
+		&::after {
 			right: 0;
 			left: initial;
 			translate: 100%;
@@ -106,9 +106,26 @@ export default {
 		opacity: 0.5;
 		pointer-events: none;
 	}
+}
 
-	@media (min-width: 1400px) {
-		.styled-nav-link {
+@media (min-width: 1400px) {
+	.styled-nav-link {
+		text-align: right;
+
+		&::before {
+			background-image: linear-gradient(-90deg, #d9d9d9 0%, #e5e5e500 85%);
+		}
+
+		&::after {
+			left: initial;
+			right: initial;
+			right: 0;
+			translate: 100%;
+		}
+
+		&.reversed {
+			text-align: left;
+
 			&::before {
 				background-image: linear-gradient(90deg, #d9d9d9 0%, #e5e5e500 85%);
 			}
@@ -116,22 +133,6 @@ export default {
 			&::after {
 				left: 0;
 				translate: -100%;
-			}
-
-			&.reversed {
-				text-align: right;
-
-				.styled-nav-link::before {
-					background-image: linear-gradient(-90deg, #d9d9d9 0%, #e5e5e500 85%);
-				}
-
-				.styled-nav-link::after {
-					left: auto;
-					right: auto;
-					right: 0;
-					left: initial;
-					translate: 100%;
-				}
 			}
 		}
 	}

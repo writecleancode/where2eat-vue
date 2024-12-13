@@ -141,6 +141,12 @@ export default {
 		grid-template-columns: auto 1fr auto;
 	}
 
+	.title {
+		grid-row: 1 / 2;
+		grid-column: 2 / 4;
+		text-align: left;
+	}
+
 	.picture {
 		grid-row: 1 / 3;
 		grid-column: 1 / 2;
@@ -170,12 +176,6 @@ export default {
 	.catering-establishment-card-wrapper {
 		grid-column-gap: 1.6rem;
 		padding: 1.6rem;
-	}
-
-	.title {
-		grid-row: 1 / 2;
-		grid-column: 2 / 4;
-		text-align: left;
 	}
 }
 </style>
