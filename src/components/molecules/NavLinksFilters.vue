@@ -4,6 +4,7 @@ import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
 
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
+import { inject } from 'vue';
 
 export default {
 	components: {
@@ -19,8 +20,17 @@ export default {
 	},
 
 	setup() {
+		const closeMobileNav = inject('closeMobileNav');
+		const currentCategory = inject('currentCategory');
+		const currentType = inject('currentType');
+		const basePath = import.meta.env.VITE_BASE_PATH;
+
 		return {
 			cateringEstabilishmentsTypes,
+			closeMobileNav,
+			currentCategory,
+			currentType,
+			basePath,
 		};
 	},
 };
@@ -30,10 +40,15 @@ export default {
 	<NavButtonsWrapper :isDesktop>
 		<StyledNavLink
 			v-for="cateringEstabilishmentsType in cateringEstabilishmentsTypes"
+			:to="`${basePath}/${currentCategory}/${cateringEstabilishmentsType.path}`"
 			:key="cateringEstabilishmentsType.value"
-			:isReversed="true">
-			{{ cateringEstabilishmentsType.title }}</StyledNavLink
-		>
+			:isActive="currentType === cateringEstabilishmentsType.path"
+			:isReversed="true"
+			:isDisabled="currentCategory === 'ongoing-promotions'"
+			:tabindex="currentCategory === 'ongoing-promotions' ? '-1' : '0'"
+			v-on:click="closeMobileNav">
+			{{ cateringEstabilishmentsType.title }}
+		</StyledNavLink>
 	</NavButtonsWrapper>
 	<HorizontalLine class="separating-line" />
 </template>

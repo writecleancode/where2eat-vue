@@ -1,7 +1,10 @@
 <script lang="ts">
 import ArrowDown from '@/assets/icons/ArrowDown.vue';
 
-import { sortOptions as sortOptionsData } from '@/data/sortOptions';
+import { onMounted, ref, watch } from 'vue';
+import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
+import { usePlaces } from '@/hooks/usePlaces';
+import { useSort } from '@/hooks/useSort';
 
 export default {
 	components: {
@@ -9,10 +12,26 @@ export default {
 	},
 
 	setup() {
-		const sortOptions = sortOptionsData;
+		const sortOptions = ref([]);
+		const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishments();
+		const { getSortOptions } = usePlaces();
+		const { handleSortPlaces } = useSort();
+
+		onMounted(async () => {
+			const data = await getSortOptions();
+			sortOptions.value = data;
+		});
+
+		watch(selectValue, () => {
+			if (!cateringEstablishments.length) return;
+
+			const data = handleSortPlaces(cateringEstablishments, selectValue);
+			setCateringEstablishments(data);
+		});
 
 		return {
 			sortOptions,
+			setSelectValue,
 		};
 	},
 };
@@ -20,7 +39,7 @@ export default {
 
 <template>
 	<div class="sort-select-wrapper">
-		<select title="sort" class="styled-select">
+		<select title="sort" class="styled-select" v-on:select="setSelectValue(e.target.value)">
 			<option v-for="option in sortOptions" :value="option.value" :key="option.value" class="styled-option">{{ option.text }}</option>
 		</select>
 		<ArrowDown class="select-arrow-down" />

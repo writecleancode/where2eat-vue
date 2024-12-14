@@ -11,12 +11,10 @@ export default {
 	},
 
 	setup() {
-		const isNavActive = inject('isNavActive');
 		const handleMobileNav = inject('handleMobileNav');
 		const closeMobileNav = inject('closeMobileNav');
 
 		return {
-			isNavActive,
 			handleMobileNav,
 			closeMobileNav,
 		};
@@ -35,7 +33,7 @@ export default {
 			<BurgerButton v-on:click="handleMobileNav" />
 		</div>
 	</header>
-	<MobileNav :isNavActive />
+	<MobileNav />
 </template>
 
 <style lang="scss" scoped>

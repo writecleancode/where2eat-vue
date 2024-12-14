@@ -2,18 +2,21 @@
 import NavLinksFilters from '@/components/molecules/NavLinksFilters.vue';
 import NavLinks from '@/components/molecules/NavLinks.vue';
 
+import { inject } from 'vue';
+
 export default {
 	components: {
 		NavLinksFilters,
 		NavLinks,
 	},
 
-	props: {
-		isNavActive: {
-			type: Boolean,
-			default: false,
-		},
-	},
+	setup() {
+		const isNavActive = inject('isNavActive')
+
+		return {
+			isNavActive
+		}
+	}
 };
 </script>
 

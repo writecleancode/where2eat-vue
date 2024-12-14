@@ -1,7 +1,12 @@
 <script lang="ts">
 import CateringEstablishmentCard from '@/components/molecules/CateringEstablishmentCard.vue';
 
-import { cateringEstablishments } from '@/data/cateringEstablishments';
+import { inject, onMounted, ref, watch } from 'vue';
+import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
+import { useModal } from '@/hooks/useModal';
+import { useError } from '@/hooks/useError';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
 
 export default {
 	components: {
@@ -9,6 +14,70 @@ export default {
 	},
 
 	setup() {
+		const {
+			cateringEstablishments,
+			getSortedCateringEstablishments,
+			isLoading,
+			toggleVisitedStatus,
+			toggleFavouriteStaus,
+			isSearchActive,
+		} = useCateringEstablishments();
+		const currentPlace = ref(cateringEstablishments[0]);
+		const route = useRoute();
+		const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
+		const setCategory = inject('setCategory');
+		const setType = inject('setType');
+
+		const handleVisitedStatus = async (index: number, id: string) => {
+			toggleVisitedStatus(index);
+
+			try {
+				await axios.post('/visited', { clickedId: id });
+				if (route.params.category === 'unvisited') getSortedCateringEstablishments(route.params.category, route.params.type);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		const handleFavouritesStatus = async (index: number, id: string) => {
+			toggleFavouriteStaus(index);
+
+			try {
+				await axios.post('/favourites', { clickedId: id });
+				if (route.params.category === 'favourites') getSortedCateringEstablishments(route.params.category, route.params.type);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		const handleDisplayPlaceDetails = (placeId: string) => {
+			const matchingPlace = cateringEstablishments.find(place => place.id === placeId);
+			if (matchingPlace) currentPlace.value = matchingPlace;
+			handleOpenModal();
+		};
+
+		const handleDisplayCateringEstablishments = () => {
+			getSortedCateringEstablishments(route.params.category, route.params.type);
+
+			route.params.category && setCategory(route.params.category);
+			route.params.type && setType(route.params.type);
+		};
+
+		onMounted(() => {
+			handleDisplayCateringEstablishments();
+		});
+
+		watch(route, () => {
+			handleDisplayCateringEstablishments();
+		});
+
+		watch(cateringEstablishments, () => {
+			cateringEstablishments.length === 0
+				? displayErrorMessage(route.params.category, route.params.type, isSearchActive)
+				: clearErrorMessage();
+		});
+
 		return {
 			cateringEstablishments,
 		};

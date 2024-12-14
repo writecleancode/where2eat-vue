@@ -1,9 +1,40 @@
 <script lang="ts">
 import SearchIcon from '@/assets/icons/SearchIcon.vue';
 
+import { inject, ref, watch } from 'vue';
+import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
+import { usePlaces } from '@/hooks/usePlaces';
+import debounce from 'lodash.debounce';
+
 export default {
 	components: {
 		SearchIcon,
+	},
+
+	setup() {
+		const inputValue = ref('');
+		const currentCategory = inject('currentCategory');
+		const currentType = inject('currentType');
+		const { setSortedCateringEstablishments, handleSearchState } = useCateringEstablishments();
+		const { findPlaces } = usePlaces();
+
+		const getMatchingPlaces = debounce(async (searchPhrase: string) => {
+			const matchingPlaces = await findPlaces(currentCategory, currentType, searchPhrase);
+			setSortedCateringEstablishments(matchingPlaces);
+
+			handleSearchState(searchPhrase);
+		}, 500);
+
+		const handleSearchInput = async e => {
+			inputValue.value = e.target.value;
+
+			if (!currentCategory || !currentType) return;
+			getMatchingPlaces(e.target.value);
+		};
+
+		watch([currentCategory, currentType], () => {
+			inputValue.value = '';
+		});
 	},
 };
 </script>

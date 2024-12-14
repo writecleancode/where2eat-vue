@@ -1,6 +1,10 @@
 <script lang="ts">
 export default {
 	props: {
+		to: {
+			type: String,
+			required: true,
+		},
 		isActive: {
 			type: Boolean,
 			default: false,
@@ -18,9 +22,9 @@ export default {
 </script>
 
 <template>
-	<a href="" class="styled-nav-link" :class="{ active: isActive, reversed: isReversed, disabled: isDisabled }">
+	<RouterLink :to class="styled-nav-link" :class="{ 'active': isActive, reversed: isReversed, disabled: isDisabled }">
 		<slot />
-	</a>
+	</RouterLink>
 </template>
 
 <style lang="scss" scoped>
@@ -71,15 +75,15 @@ export default {
 		}
 	}
 
-	&.active {
+	&.router-link-active {
 		color: $primary-light;
 		font-weight: bold;
 
-		.styled-nav-link::before {
+		&::before {
 			opacity: 1;
 		}
 
-		.styled-nav-link::after {
+		&::after {
 			background-color: $primary;
 		}
 	}
@@ -96,13 +100,9 @@ export default {
 			left: initial;
 			translate: 100%;
 		}
-
-		&.active {
-			text-align: right;
-		}
 	}
 
-	.disabled {
+	&.disabled {
 		opacity: 0.5;
 		pointer-events: none;
 	}
