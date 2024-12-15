@@ -1,11 +1,13 @@
 <script lang="ts">
 import CateringEstablishmentCard from '@/components/molecules/CateringEstablishmentCard.vue';
 
+import { navCategories } from '@/data/navCategories';
+import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { inject, onMounted, ref, watch } from 'vue';
 import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
 import { useModal } from '@/hooks/useModal';
 import { useError } from '@/hooks/useError';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 
 export default {
@@ -24,6 +26,8 @@ export default {
 		} = useCateringEstablishments();
 		const currentPlace = ref(cateringEstablishments[0]);
 		const route = useRoute();
+		const router = useRouter();
+		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
 		const setCategory = inject('setCategory');
@@ -77,6 +81,13 @@ export default {
 				? displayErrorMessage(route.params.category, route.params.type, isSearchActive)
 				: clearErrorMessage();
 		});
+
+		if (!route.params.category) {
+			router.push(`${basePath}/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`);
+		}
+		if (route.params.category && route.params.category !== 'ongoing-promotions' && !route.params.type) {
+			router.push(`${basePath}/${route.params.category}/${cateringEstabilishmentsTypes[0].path}`);
+		}
 
 		return {
 			cateringEstablishments,

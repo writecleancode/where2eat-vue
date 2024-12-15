@@ -17,7 +17,7 @@ export default {
 <template>
 	<div>
 		<Header />
-		<div class="main-template-content-wrapper">
+		<!-- <div class="main-template-content-wrapper">
 			<NavDesktopColumn>
 				<NavLinksFilters :isDesktop="true" />
 				<NavLinks />
@@ -26,7 +26,7 @@ export default {
 			<NavDesktopColumn :isLargeScreenOnly="true">
 				<NavLinksFilters />
 			</NavDesktopColumn>
-		</div>
+		</div> -->
 	</div>
 </template>
 

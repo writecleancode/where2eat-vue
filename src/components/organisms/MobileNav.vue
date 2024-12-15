@@ -11,12 +11,12 @@ export default {
 	},
 
 	setup() {
-		const isNavActive = inject('isNavActive')
+		const isNavActive = inject('isNavActive');
 
 		return {
-			isNavActive
-		}
-	}
+			isNavActive,
+		};
+	},
 };
 </script>
 
