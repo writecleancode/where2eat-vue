@@ -1,28 +1,66 @@
 <script lang="ts">
+import LoadingGif from '@/components/atoms/LoadingGif.vue';
+import NoResultsText from '@/components/atoms/NoResultsText.vue';
+
 import { usePromotions } from '@/hooks/usePromotions';
 import { useLoading } from '@/hooks/useLoading';
-import { useCategory } from '@/composables/useCategory';
-import { onMounted } from 'vue';
+import { inject, onMounted } from 'vue';
 
 export default {
+	components: {
+		LoadingGif,
+		NoResultsText,
+	},
+
 	setup() {
 		const { promotions, getPromotionsData } = usePromotions();
 		const { isLoading, setLoadingCompleted } = useLoading();
-		const { setCategory } = useCategory();
+		const setCategory = inject('setCategory');
 
 		onMounted(() => {
 			(async () => {
 				// await getPromotionsData();
-				// setLoadingCompleted();
+				setLoadingCompleted();
 			})();
 			setCategory('ongoing-promotions');
 		});
+
+		return {
+			isLoading,
+			promotions,
+		};
 	},
 };
 </script>
 
 <template>
-	<div>Ongoing Promotions - coming soon...</div>
+	<div class="ongoing-promotions-wrapper">
+		<LoadingGif v-if="isLoading" />
+		<div v-else-if="promotions.length > 0">Ongoing Promotions - coming soon...</div>
+		<NoResultsText v-else>There are no available promotions right now.</NoResultsText>
+	</div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.ongoing-promotions-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+	margin-top: 1.6rem;
+	padding: 0.8rem;
+}
+
+@media (min-width: 680px) {
+	.ongoing-promotions-wrapper {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		padding: 1.6rem;
+	}
+}
+
+@media (min-width: 1020px) {
+	.ongoing-promotions-wrapper {
+		margin-top: 2.4rem;
+	}
+}
+</style>
