@@ -20,7 +20,7 @@ export default {
 		const { findPlaces } = usePlaces();
 
 		const getMatchingPlaces = debounce(async (searchPhrase: string) => {
-			const matchingPlaces = await findPlaces(currentCategory.value, currentType.value, searchPhrase);
+			const matchingPlaces = await findPlaces(currentCategory.value, currentType.value, searchPhrase.trim());
 			setSortedCateringEstablishments(matchingPlaces);
 
 			handleSearchState(searchPhrase);
