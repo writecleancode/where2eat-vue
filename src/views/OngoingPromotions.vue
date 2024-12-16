@@ -1,5 +1,6 @@
 <script lang="ts">
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
+import PromotionsCard from '@/components/molecules/PromotionsCard.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
 import { usePromotions } from '@/hooks/usePromotions';
@@ -9,6 +10,7 @@ import { inject, onMounted } from 'vue';
 export default {
 	components: {
 		LoadingGif,
+		PromotionsCard,
 		NoResultsText,
 	},
 
@@ -19,7 +21,7 @@ export default {
 
 		onMounted(() => {
 			(async () => {
-				// await getPromotionsData();
+				await getPromotionsData();
 				setLoadingCompleted();
 			})();
 			setCategory('ongoing-promotions');
@@ -36,7 +38,9 @@ export default {
 <template>
 	<div class="ongoing-promotions-wrapper">
 		<LoadingGif v-if="isLoading" />
-		<div v-else-if="promotions.length > 0">Ongoing Promotions - coming soon...</div>
+		<template v-else-if="promotions.length > 0">
+			<PromotionsCard v-for="(promotion, index) in promotions" :promotionItem="promotion" :key="index" />
+		</template>
 		<NoResultsText v-else>There are no available promotions right now.</NoResultsText>
 	</div>
 </template>
