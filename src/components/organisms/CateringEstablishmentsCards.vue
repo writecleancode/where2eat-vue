@@ -1,5 +1,7 @@
 <script lang="ts">
+import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import CateringEstablishmentCard from '@/components/molecules/CateringEstablishmentCard.vue';
+import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
 import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
@@ -12,7 +14,9 @@ import axios from 'axios';
 
 export default {
 	components: {
+		LoadingGif,
 		CateringEstablishmentCard,
+		NoResultsText,
 	},
 
 	setup() {
@@ -91,6 +95,8 @@ export default {
 
 		return {
 			cateringEstablishments,
+			isLoading,
+			errorMessage,
 		};
 	},
 };
@@ -98,10 +104,13 @@ export default {
 
 <template>
 	<div class="catering-establishments-cards-wrapper">
+		<LoadingGif v-if="isLoading" />
 		<CateringEstablishmentCard
+			v-else-if="cateringEstablishments.length"
 			v-for="cateringEstablishment in cateringEstablishments"
 			:cateringEstablishment
 			:key="cateringEstablishment.id" />
+		<NoResultsText v-else>{{ errorMessage }}</NoResultsText>
 	</div>
 </template>
 

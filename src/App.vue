@@ -20,7 +20,6 @@ export default {
 		provide('isNavActive', isNavActive);
 		provide('handleMobileNav', handleMobileNav);
 		provide('closeMobileNav', closeMobileNav);
-
 		provide('currentCategory', currentCategory);
 		provide('setCategory', setCategory);
 		provide('currentType', currentType);
