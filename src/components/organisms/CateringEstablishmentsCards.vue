@@ -95,8 +95,10 @@ export default {
 		}
 
 		return {
-			cateringEstablishments,
 			isLoading,
+			cateringEstablishments,
+			handleVisitedStatus,
+			handleFavouritesStatus,
 			errorMessage,
 		};
 	},
@@ -108,8 +110,11 @@ export default {
 		<LoadingGif v-if="isLoading" />
 		<CateringEstablishmentCard
 			v-else-if="cateringEstablishments.length"
-			v-for="cateringEstablishment in cateringEstablishments"
+			v-for="(cateringEstablishment, index) in cateringEstablishments"
 			:cateringEstablishment
+			:index
+			:handleVisitedStatus
+			:handleFavouritesStatus
 			:key="cateringEstablishment.id" />
 		<NoResultsText v-else>{{ errorMessage }}</NoResultsText>
 	</div>

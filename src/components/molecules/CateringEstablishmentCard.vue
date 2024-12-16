@@ -13,6 +13,15 @@ export default {
 			type: Object,
 			required: true,
 		},
+		index: {
+			type: Number,
+		},
+		handleVisitedStatus: {
+			type: Function,
+		},
+		handleFavouritesStatus: {
+			type: Function,
+		},
 	},
 
 	setup() {
@@ -59,12 +68,14 @@ export default {
 				iconUrl="/src/assets/icons/check.svg"
 				activeIconUrl="/src/assets/icons/check-fill.svg"
 				label="Mark as visited"
-				:isActive="cateringEstablishment.isVisited" />
+				:isActive="cateringEstablishment.isVisited"
+				v-on:click="handleVisitedStatus(index, cateringEstablishment.id)" />
 			<IconButton
 				iconUrl="/src/assets/icons/heart.svg"
 				activeIconUrl="/src/assets/icons/heart-fill.svg"
 				label="Add to favourites"
-				:isActive="cateringEstablishment.isFavourite" />
+				:isActive="cateringEstablishment.isFavourite"
+				v-on:click="handleFavouritesStatus(index, cateringEstablishment.id)" />
 		</div>
 	</div>
 </template>
