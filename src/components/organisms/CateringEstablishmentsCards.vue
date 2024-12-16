@@ -1,12 +1,13 @@
 <script lang="ts">
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import CateringEstablishmentCard from '@/components/molecules/CateringEstablishmentCard.vue';
+import Modal from './Modal.vue';
+import CateringEstablishmentDetails from '@/components/molecules/CateringEstablishmentDetails.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
 import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { inject, onMounted, ref, watch } from 'vue';
-import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
 import { useModal } from '@/hooks/useModal';
 import { useError } from '@/hooks/useError';
 import { useRoute, useRouter } from 'vue-router';
@@ -16,6 +17,8 @@ export default {
 	components: {
 		LoadingGif,
 		CateringEstablishmentCard,
+		Modal,
+		CateringEstablishmentDetails,
 		NoResultsText,
 	},
 
@@ -24,7 +27,7 @@ export default {
 		const route = useRoute();
 		const router = useRouter();
 		const basePath = import.meta.env.VITE_BASE_PATH;
-		const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+		const { isModalOpen, openModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
 		const cateringEstablishments = inject('cateringEstablishments');
 		const getSortedCateringEstablishments = inject('getSortedCateringEstablishments');
@@ -34,7 +37,7 @@ export default {
 		const isSearchActive = inject('isSearchActive');
 		const setCategory = inject('setCategory');
 		const setType = inject('setType');
-		const currentPlace = ref(cateringEstablishments[0]);
+		const currentPlace = ref({});
 
 		const handleVisitedStatus = async (index: number, id: string) => {
 			toggleVisitedStatus(index);
@@ -59,9 +62,9 @@ export default {
 		};
 
 		const handleDisplayPlaceDetails = (placeId: string) => {
-			const matchingPlace = cateringEstablishments.find(place => place.id === placeId);
+			const matchingPlace = cateringEstablishments.value.find(place => place.id === placeId);
 			if (matchingPlace) currentPlace.value = matchingPlace;
-			handleOpenModal();
+			openModal();
 		};
 
 		const handleDisplayCateringEstablishments = () => {
@@ -99,7 +102,11 @@ export default {
 			cateringEstablishments,
 			handleVisitedStatus,
 			handleFavouritesStatus,
+			handleDisplayPlaceDetails,
 			errorMessage,
+			currentPlace,
+			isModalOpen,
+			closeModal,
 		};
 	},
 };
@@ -115,8 +122,12 @@ export default {
 			:index
 			:handleVisitedStatus
 			:handleFavouritesStatus
+			:openOpenModal="handleDisplayPlaceDetails"
 			:key="cateringEstablishment.id" />
 		<NoResultsText v-else>{{ errorMessage }}</NoResultsText>
+		<Modal :isModalOpen v-if="cateringEstablishments.length">
+			<CateringEstablishmentDetails :cateringEstablishment="currentPlace" :closeModal />
+		</Modal>
 	</div>
 </template>
 
