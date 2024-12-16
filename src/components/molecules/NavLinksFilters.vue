@@ -4,6 +4,7 @@ import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
 
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
+import { navCategories } from '@/data/navCategories';
 import { inject } from 'vue';
 
 export default {
@@ -25,12 +26,19 @@ export default {
 		const currentType = inject('currentType');
 		const basePath = import.meta.env.VITE_BASE_PATH;
 
+		const createPath = (basePath, category, type) => {
+			category = category || navCategories[0];
+
+			return `${basePath}/${category}/${type}`;
+		};
+
 		return {
 			cateringEstabilishmentsTypes,
 			closeMobileNav,
 			currentCategory,
 			currentType,
 			basePath,
+			createPath,
 		};
 	},
 };
@@ -40,7 +48,7 @@ export default {
 	<NavButtonsWrapper :isDesktop>
 		<StyledNavLink
 			v-for="cateringEstabilishmentsType in cateringEstabilishmentsTypes"
-			:to="`${basePath}/${currentCategory}/${cateringEstabilishmentsType.path}`"
+			:to="createPath(basePath, currentCategory, cateringEstabilishmentsType.path)"
 			:key="cateringEstabilishmentsType.value"
 			:isActive="currentType === cateringEstabilishmentsType.path"
 			:isReversed="true"

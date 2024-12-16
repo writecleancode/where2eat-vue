@@ -31,7 +31,7 @@ export default {
 
 <template>
 	<MainTemplate>
-		<!-- <RouterView /> -->
+		<RouterView />
 	</MainTemplate>
 </template>
 
