@@ -1,5 +1,5 @@
 import { sortOptions } from '@/data/sortOptions';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useLoading } from '@/hooks/useLoading';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
@@ -23,7 +23,7 @@ export const useCateringEstablishments = () => {
 	};
 
 	const setSortedCateringEstablishments = placesToSort => {
-		cateringEstablishments.value = handleSortPlaces(placesToSort, selectValue);
+		cateringEstablishments.value = handleSortPlaces(placesToSort, selectValue.value);
 	};
 
 	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {

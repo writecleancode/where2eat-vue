@@ -1,8 +1,7 @@
 <script lang="ts">
 import ArrowDown from '@/assets/icons/ArrowDown.vue';
 
-import { onMounted, ref, watch } from 'vue';
-import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
+import { inject, onMounted, ref, watch } from 'vue';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 
@@ -13,9 +12,13 @@ export default {
 
 	setup() {
 		const sortOptions = ref([]);
-		const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishments();
 		const { getSortOptions } = usePlaces();
 		const { handleSortPlaces } = useSort();
+
+		const selectValue = inject('selectValue');
+		const setSelectValue = inject('setSelectValue');
+		const cateringEstablishments = inject('cateringEstablishments');
+		const setCateringEstablishments = inject('setCateringEstablishments');
 
 		onMounted(async () => {
 			const data = await getSortOptions();
@@ -23,9 +26,9 @@ export default {
 		});
 
 		watch(selectValue, () => {
-			if (!cateringEstablishments.length) return;
+			if (!cateringEstablishments.value.length) return;
 
-			const data = handleSortPlaces(cateringEstablishments, selectValue);
+			const data = handleSortPlaces(cateringEstablishments.value, selectValue.value);
 			setCateringEstablishments(data);
 		});
 
@@ -39,7 +42,7 @@ export default {
 
 <template>
 	<div class="sort-select-wrapper">
-		<select title="sort" class="styled-select" v-on:select="setSelectValue(e.target.value)">
+		<select title="sort" class="styled-select" v-on:change="setSelectValue($event.target.value)">
 			<option v-for="option in sortOptions" :value="option.value" :key="option.value" class="styled-option">{{ option.text }}</option>
 		</select>
 		<ArrowDown class="select-arrow-down" />

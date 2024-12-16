@@ -28,6 +28,10 @@ export default {
 
 			setSortedCateringEstablishments,
 			handleSearchState,
+
+			selectValue,
+			setSelectValue,
+			setCateringEstablishments,
 		} = useCateringEstablishments();
 		provide('isNavActive', isNavActive);
 		provide('handleMobileNav', handleMobileNav);
@@ -46,6 +50,9 @@ export default {
 		provide('isSearchActive', isSearchActive);
 		provide('setSortedCateringEstablishments', setSortedCateringEstablishments);
 		provide('handleSearchState', handleSearchState);
+		provide('selectValue', selectValue);
+		provide('setSelectValue', setSelectValue);
+		provide('setCateringEstablishments', setCateringEstablishments);
 	},
 };
 </script>
