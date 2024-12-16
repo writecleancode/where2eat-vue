@@ -15,11 +15,12 @@ export default {
 		const inputValue = ref('');
 		const currentCategory = inject('currentCategory');
 		const currentType = inject('currentType');
-		const { setSortedCateringEstablishments, handleSearchState } = useCateringEstablishments();
+		const setSortedCateringEstablishments = inject('setSortedCateringEstablishments');
+		const handleSearchState = inject('handleSearchState');
 		const { findPlaces } = usePlaces();
 
 		const getMatchingPlaces = debounce(async (searchPhrase: string) => {
-			const matchingPlaces = await findPlaces(currentCategory, currentType, searchPhrase);
+			const matchingPlaces = await findPlaces(currentCategory.value, currentType.value, searchPhrase);
 			setSortedCateringEstablishments(matchingPlaces);
 
 			handleSearchState(searchPhrase);
@@ -35,13 +36,18 @@ export default {
 		watch([currentCategory, currentType], () => {
 			inputValue.value = '';
 		});
+
+		return {
+			inputValue,
+			handleSearchInput,
+		};
 	},
 };
 </script>
 
 <template>
 	<div class="search-input-wrapper">
-		<input type="text" id="search" aria-label="search" class="styled-input" />
+		<input type="text" id="search" aria-label="search" class="styled-input" :value="inputValue" v-on:input="handleSearchInput" />
 		<label for="search" class="styled-label">
 			<SearchIcon class="styled-icon" />
 		</label>

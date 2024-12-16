@@ -2,10 +2,11 @@
 import MainTemplate from '@/components/templates/MainTemplate.vue';
 import CateringEstablishments from '@/views/CateringEstablishments.vue';
 
-import { useNav } from './composables/useNav';
-import { useCategory } from './composables/useCategory';
 import { provide } from 'vue';
-import { useType } from './composables/useType';
+import { useNav } from '@/composables/useNav';
+import { useCategory } from '@/composables/useCategory';
+import { useType } from '@/composables/useType';
+import { useCateringEstablishments } from '@/composables/useCateringEstablishments';
 
 export default {
 	components: {
@@ -17,13 +18,34 @@ export default {
 		const { isNavActive, handleMobileNav, closeMobileNav } = useNav();
 		const { currentCategory, setCategory } = useCategory();
 		const { currentType, setType } = useType();
+		const {
+			cateringEstablishments,
+			getSortedCateringEstablishments,
+			isLoading,
+			toggleVisitedStatus,
+			toggleFavouriteStaus,
+			isSearchActive,
+
+			setSortedCateringEstablishments,
+			handleSearchState,
+		} = useCateringEstablishments();
 		provide('isNavActive', isNavActive);
 		provide('handleMobileNav', handleMobileNav);
 		provide('closeMobileNav', closeMobileNav);
+		provide('setSortedCateringEstablishments', setSortedCateringEstablishments);
+		provide('handleSearchState', handleSearchState);
 		provide('currentCategory', currentCategory);
 		provide('setCategory', setCategory);
 		provide('currentType', currentType);
 		provide('setType', setType);
+		provide('cateringEstablishments', cateringEstablishments);
+		provide('getSortedCateringEstablishments', getSortedCateringEstablishments);
+		provide('isLoading', isLoading);
+		provide('toggleVisitedStatus', toggleVisitedStatus);
+		provide('toggleFavouriteStaus', toggleFavouriteStaus);
+		provide('isSearchActive', isSearchActive);
+		provide('setSortedCateringEstablishments', setSortedCateringEstablishments);
+		provide('handleSearchState', handleSearchState);
 	},
 };
 </script>
