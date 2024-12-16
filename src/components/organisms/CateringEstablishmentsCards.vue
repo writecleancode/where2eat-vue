@@ -66,7 +66,9 @@ export default {
 		};
 
 		const handleDisplayCateringEstablishments = () => {
-			getSortedCateringEstablishments(route.params.category, route.params.type);
+			if (route.params.category && route.params.type) {
+				getSortedCateringEstablishments(route.params.category, route.params.type);
+			}
 
 			route.params.category && setCategory(route.params.category);
 			route.params.type && setType(route.params.type);
