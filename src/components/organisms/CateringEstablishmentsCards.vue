@@ -48,7 +48,7 @@ export default {
 
 			try {
 				await axios.post('/visited', { clickedId: id });
-				if (route.params.category === 'unvisited') getSortedCateringEstablishments(route.params.category, route.params.type);
+				if (route.params.category === 'unvisited') getSortedCateringEstablishments(route.params.category, route.params.type as string);
 			} catch (error) {
 				console.log(error);
 			}
@@ -59,7 +59,7 @@ export default {
 
 			try {
 				await axios.post('/favourites', { clickedId: id });
-				if (route.params.category === 'favourites') getSortedCateringEstablishments(route.params.category, route.params.type);
+				if (route.params.category === 'favourites') getSortedCateringEstablishments(route.params.category, route.params.type as string);
 			} catch (error) {
 				console.log(error);
 			}
@@ -73,11 +73,11 @@ export default {
 
 		const handleDisplayCateringEstablishments = () => {
 			if (route.params.category && route.params.type) {
-				getSortedCateringEstablishments(route.params.category, route.params.type);
+				getSortedCateringEstablishments(route.params.category as string, route.params.type as string);
 			}
 
-			route.params.category && setCategory(route.params.category);
-			route.params.type && setType(route.params.type);
+			route.params.category && setCategory(route.params.category as string);
+			route.params.type && setType(route.params.type as string);
 		};
 
 		onMounted(() => {
@@ -89,8 +89,8 @@ export default {
 		});
 
 		watch(cateringEstablishments, () => {
-			cateringEstablishments.length === 0
-				? displayErrorMessage(route.params.category, route.params.type, isSearchActive)
+			cateringEstablishments.value.length === 0
+				? displayErrorMessage(route.params.category as string, route.params.type as string, isSearchActive.value)
 				: clearErrorMessage();
 		});
 
