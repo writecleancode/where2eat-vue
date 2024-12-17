@@ -24,10 +24,13 @@ export default {
 	display: none;
 	position: fixed;
 	inset: 0;
+	z-index: 2;
 	background-color: rgba(255, 255, 255, 0.75);
 
 	&.active {
-		display: block;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
@@ -43,6 +46,14 @@ export default {
 }
 
 @media (min-width: 560px) {
+	.modal-overlay {
+		&.active {
+			display: block;
+			justify-content: initial;
+			align-items: initial;
+		}
+	}
+
 	.modal-wrapper {
 		position: absolute;
 		top: 50%;
