@@ -137,10 +137,10 @@ export default {
 	}
 
 	.contact-wrapper {
-		display: flex;
-		flex-direction: column;
-		gap: 0.8rem;
-		padding: 0 0.8rem;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 2.4rem;
+		padding: 0;
 	}
 
 	.close-btn {
