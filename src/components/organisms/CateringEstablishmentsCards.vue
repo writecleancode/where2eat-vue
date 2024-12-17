@@ -38,7 +38,7 @@ export default {
 		const router = useRouter();
 		const route = useRoute();
 		const basePath = import.meta.env.VITE_BASE_PATH;
-		const { isModalOpen, openModal, closeModal } = useModal();
+		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
 		const { setCategory } = useCategoryContext();
 		const { setType } = useTypeContext();
@@ -65,10 +65,10 @@ export default {
 			}
 		};
 
-		const handleDisplayPlaceDetails = (placeId: string) => {
+		const handleDisplayPlaceDetails = (e: MouseEvent, placeId: string) => {
 			const matchingPlace = cateringEstablishments.value.find(place => place.id === placeId);
 			if (matchingPlace) currentPlace.value = matchingPlace;
-			openModal();
+			handleOpenModal(e);
 		};
 
 		const handleDisplayCateringEstablishments = () => {
@@ -126,10 +126,10 @@ export default {
 			:index
 			:handleVisitedStatus
 			:handleFavouritesStatus
-			:openOpenModal="handleDisplayPlaceDetails"
+			:handleOpenModal="handleDisplayPlaceDetails"
 			:key="cateringEstablishment.id" />
 		<NoResultsText v-else>{{ errorMessage }}</NoResultsText>
-		<Modal :isModalOpen v-if="cateringEstablishments.length">
+		<Modal v-if="cateringEstablishments.length" :isModalOpen :closeModal>
 			<CateringEstablishmentDetails :cateringEstablishment="currentPlace" :closeModal />
 		</Modal>
 	</div>

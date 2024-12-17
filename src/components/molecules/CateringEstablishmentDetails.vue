@@ -45,7 +45,7 @@ export default {
 			<p>{{ cateringEstablishment.adressLong }}</p>
 			<p>{{ cateringEstablishment.phoneNumber }}</p>
 		</div>
-		<button class="close-btn" v-on:click="closeModal" aria-label="close modal">
+		<button id="close-modal-btn" class="close-modal-btn" v-on:click="closeModal" aria-label="close modal">
 			<Xmark />
 		</button>
 	</div>
@@ -101,7 +101,10 @@ export default {
 	padding: 0 0.8rem;
 }
 
-.close-btn {
+.close-modal-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	padding: 0.2rem 0.8rem;
 	border: none;
 	border-radius: 8px;
@@ -145,7 +148,7 @@ export default {
 		padding: 0;
 	}
 
-	.close-btn {
+	.close-modal-btn {
 		svg {
 			width: 3.2rem;
 			height: 3.2rem;

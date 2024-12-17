@@ -45,9 +45,9 @@ export default {
 	}
 }
 
-.icon,
-.active-icon {
+.icon {
 	transition: clip-path 0.3s;
+	pointer-events: none;
 }
 
 .active-icon {

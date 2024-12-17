@@ -1,10 +1,22 @@
 <script lang="ts">
+import { onClickOutside, type MaybeElement, type OnClickOutsideHandler } from '@vueuse/core';
+import { useTemplateRef } from 'vue';
+
 export default {
 	props: {
 		isModalOpen: {
 			type: Boolean,
 			default: false,
 		},
+		closeModal: {
+			type: Function,
+		},
+	},
+
+	setup({ closeModal }) {
+		const modal = useTemplateRef<MaybeElement>('my-modal');
+
+		onClickOutside(modal, closeModal as OnClickOutsideHandler);
 	},
 };
 </script>
@@ -12,7 +24,7 @@ export default {
 <template>
 	<teleport to="body">
 		<div class="modal-overlay" :class="{ active: isModalOpen }">
-			<div class="modal-wrapper">
+			<div class="modal-wrapper" ref="my-modal">
 				<slot />
 			</div>
 		</div>

@@ -22,7 +22,7 @@ export default {
 		handleFavouritesStatus: {
 			type: Function,
 		},
-		openOpenModal: {
+		handleOpenModal: {
 			type: Function,
 		},
 	},
@@ -66,7 +66,10 @@ export default {
 			</div>
 		</div>
 		<div class="icons-wrapper">
-			<IconButton iconUrl="/src/assets/icons/info.svg" label="Show more details" v-on:click="openOpenModal(cateringEstablishment.id)" />
+			<IconButton
+				iconUrl="/src/assets/icons/info.svg"
+				label="Show more details"
+				v-on:click="handleOpenModal($event, cateringEstablishment.id)" />
 			<IconButton
 				iconUrl="/src/assets/icons/check.svg"
 				activeIconUrl="/src/assets/icons/check-fill.svg"
