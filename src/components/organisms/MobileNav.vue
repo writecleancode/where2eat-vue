@@ -2,7 +2,7 @@
 import NavLinksFilters from '@/components/molecules/NavLinksFilters.vue';
 import NavLinks from '@/components/molecules/NavLinks.vue';
 
-import { inject } from 'vue';
+import { useNavContext } from '@/providers/navProvider';
 
 export default {
 	components: {
@@ -11,7 +11,7 @@ export default {
 	},
 
 	setup() {
-		const isNavActive = inject('isNavActive');
+		const { isNavActive } = useNavContext();
 
 		return {
 			isNavActive,

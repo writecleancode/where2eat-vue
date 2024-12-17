@@ -1,3 +1,4 @@
+import { createProvider } from '@/utils/createProvider';
 import { ref } from 'vue';
 
 export const useNav = () => {
@@ -10,6 +11,8 @@ export const useNav = () => {
 	return {
 		isNavActive,
 		handleMobileNav,
-        closeMobileNav,
+		closeMobileNav,
 	};
 };
+
+export const [useNavProvider, useNavContext] = createProvider('useNav', useNav);

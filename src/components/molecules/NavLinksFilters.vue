@@ -3,6 +3,7 @@ import NavButtonsWrapper from '@/components/atoms/NavButtonsWrapper.vue';
 import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
 
+import { useNavContext } from '@/providers/navProvider';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { navCategories } from '@/data/navCategories';
 import { inject } from 'vue';
@@ -21,7 +22,7 @@ export default {
 	},
 
 	setup() {
-		const closeMobileNav = inject('closeMobileNav');
+		const { closeMobileNav } = useNavContext();
 		const currentCategory = inject('currentCategory');
 		const currentType = inject('currentType');
 		const basePath = import.meta.env.VITE_BASE_PATH;

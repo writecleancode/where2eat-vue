@@ -1,19 +1,16 @@
 <script lang="ts">
-import { inject } from 'vue';
-
 export default {
-	setup() {
-		const isNavActive = inject('isNavActive');
-
-		return {
-			isNavActive,
-		};
+	props: {
+		isActive: {
+			type: Boolean,
+			default: false,
+		},
 	},
 };
 </script>
 
 <template>
-	<button class="burger-button" :class="{ active: isNavActive }" :aria-label="isNavActive ? 'close navigation' : 'open navigation'">
+	<button class="burger-button" :class="{ active: isActive }" :aria-label="isActive ? 'close navigation' : 'open navigation'">
 		<span class="burger-button__line burger-button__line--top"></span>
 		<span class="burger-button__line burger-button__line--middle"></span>
 		<span class="burger-button__line burger-button__line--bottom"></span>

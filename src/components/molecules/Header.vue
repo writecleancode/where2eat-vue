@@ -2,7 +2,7 @@
 import BurgerButton from '@/components/atoms/BurgerButton.vue';
 import MobileNav from '@/components/organisms/MobileNav.vue';
 
-import { inject } from 'vue';
+import { useNavContext } from '@/providers/navProvider';
 
 export default {
 	components: {
@@ -11,10 +11,10 @@ export default {
 	},
 
 	setup() {
-		const handleMobileNav = inject('handleMobileNav');
-		const closeMobileNav = inject('closeMobileNav');
+		const { isNavActive, handleMobileNav, closeMobileNav } = useNavContext();
 
 		return {
+			isNavActive,
 			handleMobileNav,
 			closeMobileNav,
 		};
@@ -30,7 +30,7 @@ export default {
 			</a>
 			<span class="decoration-line"></span>
 			<p class="app-description">Find place to kill your hunger</p>
-			<BurgerButton v-on:click="handleMobileNav" />
+			<BurgerButton :isActive="isNavActive" v-on:click="handleMobileNav" />
 		</div>
 	</header>
 	<MobileNav />
