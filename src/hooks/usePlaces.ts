@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const usePlaces = () => {
-	const getCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
+	const getCateringEstablishments = async (category: string, type: string) => {
 		try {
 			const { data } = await axios.get(`/${category}/${type}`);
 			return data.matchingCateringEstablishments;

@@ -1,33 +1,35 @@
+import type { catetingEstablishmentsType } from '@/types/types';
+
 import { sortOptions } from '@/data/sortOptions';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useLoading } from '@/composables/useLoading';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 import { createProvider } from '@/utils/createProvider';
 
-export const useCateringEstablishments = () => {
-	const initialSearchState = false;
+const initialSearchState = false;
 
-	const cateringEstablishments = ref([]);
+const useCateringEstablishments = () => {
+	const cateringEstablishments = ref<catetingEstablishmentsType[]>([]);
 	const selectValue = ref(sortOptions[0].value);
 	const isSearchActive = ref(initialSearchState);
 	const { isLoading, setLoadingCompleted } = useLoading();
 	const { getCateringEstablishments } = usePlaces();
 	const { handleSortPlaces } = useSort();
 
-	const setCateringEstablishments = cateringEstablishmentsToSet => {
+	const setCateringEstablishments = (cateringEstablishmentsToSet: catetingEstablishmentsType[]) => {
 		cateringEstablishments.value = cateringEstablishmentsToSet;
 	};
 
-	const setSelectValue = selectValueToSet => {
+	const setSelectValue = (selectValueToSet: string) => {
 		selectValue.value = selectValueToSet;
 	};
 
-	const setSortedCateringEstablishments = placesToSort => {
+	const setSortedCateringEstablishments = (placesToSort: catetingEstablishmentsType[]) => {
 		cateringEstablishments.value = handleSortPlaces(placesToSort, selectValue.value);
 	};
 
-	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
+	const getSortedCateringEstablishments = async (category: string, type: string) => {
 		const data = await getCateringEstablishments(category, type);
 		setSortedCateringEstablishments(data);
 		setLoadingCompleted();
@@ -42,7 +44,7 @@ export const useCateringEstablishments = () => {
 	};
 
 	const handleSearchState = (searchPhrase: string) => {
-		if (searchPhrase !== '' && isSearchActive === true) return;
+		if (searchPhrase !== '' && isSearchActive.value === true) return;
 
 		searchPhrase === '' ? (isSearchActive.value = false) : (isSearchActive.value = true);
 	};

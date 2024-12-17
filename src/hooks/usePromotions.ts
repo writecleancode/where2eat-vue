@@ -1,5 +1,6 @@
-import axios from 'axios';
+import type { DatoCmsPromotionsDataType, promotionsDataType } from '@/types/types';
 import { ref } from 'vue';
+import axios from 'axios';
 
 const query = `
 {
@@ -15,7 +16,7 @@ const query = `
 `;
 
 export const usePromotions = () => {
-	const promotions = ref([]);
+	const promotions = ref<promotionsDataType[]>([]);
 
 	const getPromotionsData = async () => {
 		try {
@@ -33,7 +34,7 @@ export const usePromotions = () => {
 				}
 			);
 
-			const promotionsData = data.allPromotions.map(item => ({
+			const promotionsData: promotionsDataType[] = data.allPromotions.map((item: DatoCmsPromotionsDataType) => ({
 				...item,
 				promotionsList: JSON.parse(item.promotionsList),
 			}));
