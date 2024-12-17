@@ -41,8 +41,6 @@ export default {
 
 .header-wrapper {
 	position: relative;
-	position: sticky;
-	top: 0;
 	z-index: 1;
 }
 
