@@ -9,6 +9,7 @@ export default {
 	props: {
 		promotionItem: {
 			type: Object,
+			required: true,
 		},
 	},
 };

@@ -28,8 +28,8 @@ export default {
 		const { currentType } = useTypeContext();
 		const basePath = import.meta.env.VITE_BASE_PATH;
 
-		const createPath = (basePath, category, type) => {
-			category = category || navCategories[0];
+		const createPath = (basePath: string, category: string, type: string) => {
+			category = category || navCategories[0].path;
 
 			return `${basePath}/${category}/${type}`;
 		};

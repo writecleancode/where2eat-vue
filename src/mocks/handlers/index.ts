@@ -1,3 +1,4 @@
+import type { catetingEstablishmentsType } from '@/types/types';
 import { HttpResponse, http } from 'msw';
 import { cateringEstablishments } from '@/mocks/data/cateringEstablishments';
 import { sortOptions } from '@/mocks/data/sortOptions';
@@ -5,7 +6,7 @@ import { sortOptions } from '@/mocks/data/sortOptions';
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
 let favourites: string[] = JSON.parse(localStorage.getItem('favourites') as string) || [];
 
-const checkUserPreferences = (cateringEstablishments, type = 'any') => {
+const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType[], type = 'any') => {
 	const matchingPlaces = cateringEstablishments.map(place => {
 		return {
 			...place,
@@ -20,7 +21,7 @@ const checkUserPreferences = (cateringEstablishments, type = 'any') => {
 	return filteredPlaces;
 };
 
-const getMatchingPlaces = (cateringEstablishments, searchPhrase: string) => {
+const getMatchingPlaces = (cateringEstablishments: catetingEstablishmentsType[], searchPhrase: string) => {
 	if (!searchPhrase) return cateringEstablishments;
 	return cateringEstablishments.filter(place => place.name.toLowerCase().includes(searchPhrase.toLowerCase()));
 };

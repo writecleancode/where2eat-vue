@@ -1,6 +1,7 @@
 <script lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import Xmark from '@/assets/icons/Xmark.vue';
+import type { PropType } from 'vue';
 
 export default {
 	components: {
@@ -9,11 +10,12 @@ export default {
 	},
 
 	props: {
-		closeModal: {
-			type: Function,
-		},
 		cateringEstablishment: {
 			type: Object,
+			required: true,
+		},
+		closeModal: {
+			type: Function as PropType<() => void>,
 		},
 	},
 

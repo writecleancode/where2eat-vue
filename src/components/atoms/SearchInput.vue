@@ -27,11 +27,12 @@ export default {
 			handleSearchState(searchPhrase);
 		}, 500);
 
-		const handleSearchInput = async e => {
-			inputValue.value = e.target.value;
+		const handleSearchInput = async (e: Event) => {
+			const target = e.target as HTMLInputElement;
+			inputValue.value = target.value;
 
 			if (!currentCategory || !currentType) return;
-			getMatchingPlaces(e.target.value);
+			getMatchingPlaces(target.value);
 		};
 
 		watch([currentCategory, currentType], () => {

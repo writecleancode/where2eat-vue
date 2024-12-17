@@ -3,7 +3,7 @@ export type catetingEstablishmentsType = {
 	type: string;
 	typeName: string;
 	name: string;
-	imgURL: string;
+	imgUrl: string;
 	imgAlt: string;
 	adress: string;
 	adressLong: string;
@@ -32,4 +32,9 @@ export type promotionsDataType = {
 		alt: string;
 	};
 	promotionsList: string[];
+};
+
+export type sortOptionsType = {
+	text: string;
+	value: string;
 };

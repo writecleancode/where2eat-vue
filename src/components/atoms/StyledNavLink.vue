@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-	<RouterLink :to class="styled-nav-link" :class="{ 'active': isActive, reversed: isReversed, disabled: isDisabled }">
+	<RouterLink :to class="styled-nav-link" :class="{ active: isActive, reversed: isReversed, disabled: isDisabled }">
 		<slot />
 	</RouterLink>
 </template>
