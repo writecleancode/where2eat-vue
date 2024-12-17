@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { useLoading } from '@/hooks/useLoading';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
+import { createProvider } from '@/utils/createProvider';
 
 export const useCateringEstablishments = () => {
 	const initialSearchState = false;
@@ -60,3 +61,8 @@ export const useCateringEstablishments = () => {
 		toggleFavouriteStaus,
 	};
 };
+
+export const [useCateringEstablishmentsProvider, useCateringEstablishmentsContext] = createProvider(
+	'useCateringEstablishments',
+	useCateringEstablishments
+);

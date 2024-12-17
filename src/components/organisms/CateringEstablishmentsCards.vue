@@ -5,6 +5,7 @@ import Modal from './Modal.vue';
 import CateringEstablishmentDetails from '@/components/molecules/CateringEstablishmentDetails.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
+import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { inject, onMounted, ref, watch } from 'vue';
@@ -23,18 +24,21 @@ export default {
 	},
 
 	setup() {
+		const {
+			cateringEstablishments,
+			getSortedCateringEstablishments,
+			isLoading,
+			toggleVisitedStatus,
+			toggleFavouriteStaus,
+			isSearchActive,
+		} = useCateringEstablishmentsContext();
+
 		// const currentPlace = ref(cateringEstablishments[0]);
 		const route = useRoute();
 		const router = useRouter();
 		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, openModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
-		const cateringEstablishments = inject('cateringEstablishments');
-		const getSortedCateringEstablishments = inject('getSortedCateringEstablishments');
-		const isLoading = inject('isLoading');
-		const toggleVisitedStatus = inject('toggleVisitedStatus');
-		const toggleFavouriteStaus = inject('toggleFavouriteStaus');
-		const isSearchActive = inject('isSearchActive');
 		const setCategory = inject('setCategory');
 		const setType = inject('setType');
 		const currentPlace = ref({});

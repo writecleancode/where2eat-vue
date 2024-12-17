@@ -1,7 +1,8 @@
 <script lang="ts">
 import ArrowDown from '@/assets/icons/ArrowDown.vue';
 
-import { inject, onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 
@@ -12,13 +13,9 @@ export default {
 
 	setup() {
 		const sortOptions = ref([]);
+		const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishmentsContext();
 		const { getSortOptions } = usePlaces();
 		const { handleSortPlaces } = useSort();
-
-		const selectValue = inject('selectValue');
-		const setSelectValue = inject('setSelectValue');
-		const cateringEstablishments = inject('cateringEstablishments');
-		const setCateringEstablishments = inject('setCateringEstablishments');
 
 		onMounted(async () => {
 			const data = await getSortOptions();
