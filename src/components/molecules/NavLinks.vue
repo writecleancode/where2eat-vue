@@ -3,10 +3,10 @@ import NavButtonsWrapper from '@/components/atoms/NavButtonsWrapper.vue';
 import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
 
+import { navCategories } from '@/data/navCategories';
 import { useNavContext } from '@/providers/navProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
-import { navCategories } from '@/data/navCategories';
-import { inject } from 'vue';
+import { useTypeContext } from '@/providers/typeProvider';
 
 export default {
 	components: {
@@ -18,8 +18,7 @@ export default {
 	setup() {
 		const { closeMobileNav } = useNavContext();
 		const { currentCategory } = useCategoryContext();
-		const currentType = inject('currentType');
-		const setType = inject('setType');
+		const { currentType, setType } = useTypeContext();
 		const basePath = import.meta.env.VITE_BASE_PATH;
 
 		const handleOngoingPromotionsClick = () => {

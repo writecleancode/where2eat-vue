@@ -1,3 +1,4 @@
+import { createProvider } from '@/utils/createProvider';
 import { ref } from 'vue';
 
 export const useType = () => {
@@ -10,3 +11,5 @@ export const useType = () => {
 		setType,
 	};
 };
+
+export const [useTypeProvider, useTypeContext] = createProvider('useType', useType);

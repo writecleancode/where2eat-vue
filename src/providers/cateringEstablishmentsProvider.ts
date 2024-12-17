@@ -1,6 +1,6 @@
 import { sortOptions } from '@/data/sortOptions';
 import { ref, watch } from 'vue';
-import { useLoading } from '@/hooks/useLoading';
+import { useLoading } from '@/composables/useLoading';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 import { createProvider } from '@/utils/createProvider';

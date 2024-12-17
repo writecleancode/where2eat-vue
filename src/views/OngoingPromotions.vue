@@ -4,7 +4,7 @@ import PromotionsCard from '@/components/molecules/PromotionsCard.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
 import { usePromotions } from '@/hooks/usePromotions';
-import { useLoading } from '@/hooks/useLoading';
+import { useLoading } from '@/composables/useLoading';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { onMounted } from 'vue';
 

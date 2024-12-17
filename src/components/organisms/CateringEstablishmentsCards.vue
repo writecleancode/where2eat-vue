@@ -9,9 +9,10 @@ import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
-import { inject, onMounted, ref, watch } from 'vue';
-import { useModal } from '@/hooks/useModal';
-import { useError } from '@/hooks/useError';
+import { useTypeContext } from '@/providers/typeProvider';
+import { onMounted, ref, watch } from 'vue';
+import { useModal } from '@/composables/useModal';
+import { useError } from '@/composables/useError';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 
@@ -34,6 +35,7 @@ export default {
 			isSearchActive,
 		} = useCateringEstablishmentsContext();
 		const { setCategory } = useCategoryContext();
+		const { setType } = useTypeContext();
 
 		// const currentPlace = ref(cateringEstablishments[0]);
 		const route = useRoute();
@@ -41,7 +43,6 @@ export default {
 		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, openModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
-		const setType = inject('setType');
 		const currentPlace = ref({});
 
 		const handleVisitedStatus = async (index: number, id: string) => {

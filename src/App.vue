@@ -5,8 +5,7 @@ import CateringEstablishments from '@/views/CateringEstablishments.vue';
 import { useCateringEstablishmentsProvider } from './providers/cateringEstablishmentsProvider';
 import { useNavProvider } from '@/providers/navProvider';
 import { useCategoryProvider } from '@/providers/categoryProvider';
-import { provide } from 'vue';
-import { useType } from '@/composables/useType';
+import { useTypeProvider } from '@/providers/typeProvider';
 
 export default {
 	components: {
@@ -18,9 +17,7 @@ export default {
 		useNavProvider();
 		useCateringEstablishmentsProvider();
 		useCategoryProvider();
-		const { currentType, setType } = useType();
-		provide('currentType', currentType);
-		provide('setType', setType);
+		useTypeProvider();
 	},
 };
 </script>
