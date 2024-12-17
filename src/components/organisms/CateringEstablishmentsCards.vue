@@ -10,9 +10,9 @@ import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsType
 import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
-import { onMounted, ref, watch } from 'vue';
 import { useModal } from '@/composables/useModal';
 import { useError } from '@/composables/useError';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 
@@ -34,16 +34,14 @@ export default {
 			toggleFavouriteStaus,
 			isSearchActive,
 		} = useCateringEstablishmentsContext();
-		const { setCategory } = useCategoryContext();
-		const { setType } = useTypeContext();
-
-		// const currentPlace = ref(cateringEstablishments[0]);
-		const route = useRoute();
+		const currentPlace = ref({});
 		const router = useRouter();
+		const route = useRoute();
 		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, openModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
-		const currentPlace = ref({});
+		const { setCategory } = useCategoryContext();
+		const { setType } = useTypeContext();
 
 		const handleVisitedStatus = async (index: number, id: string) => {
 			toggleVisitedStatus(index);
