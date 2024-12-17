@@ -5,9 +5,10 @@ import Modal from './Modal.vue';
 import CateringEstablishmentDetails from '@/components/molecules/CateringEstablishmentDetails.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
-import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
+import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
+import { useCategoryContext } from '@/providers/categoryProvider';
 import { inject, onMounted, ref, watch } from 'vue';
 import { useModal } from '@/hooks/useModal';
 import { useError } from '@/hooks/useError';
@@ -32,6 +33,7 @@ export default {
 			toggleFavouriteStaus,
 			isSearchActive,
 		} = useCateringEstablishmentsContext();
+		const { setCategory } = useCategoryContext();
 
 		// const currentPlace = ref(cateringEstablishments[0]);
 		const route = useRoute();
@@ -39,7 +41,6 @@ export default {
 		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, openModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
-		const setCategory = inject('setCategory');
 		const setType = inject('setType');
 		const currentPlace = ref({});
 

@@ -5,7 +5,8 @@ import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
 import { usePromotions } from '@/hooks/usePromotions';
 import { useLoading } from '@/hooks/useLoading';
-import { inject, onMounted } from 'vue';
+import { useCategoryContext } from '@/providers/categoryProvider';
+import { onMounted } from 'vue';
 
 export default {
 	components: {
@@ -17,7 +18,7 @@ export default {
 	setup() {
 		const { promotions, getPromotionsData } = usePromotions();
 		const { isLoading, setLoadingCompleted } = useLoading();
-		const setCategory = inject('setCategory');
+		const { setCategory } = useCategoryContext();
 
 		onMounted(() => {
 			(async () => {

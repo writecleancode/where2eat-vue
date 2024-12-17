@@ -3,9 +3,9 @@ import MainTemplate from '@/components/templates/MainTemplate.vue';
 import CateringEstablishments from '@/views/CateringEstablishments.vue';
 
 import { useCateringEstablishmentsProvider } from './providers/cateringEstablishmentsProvider';
+import { useNavProvider } from '@/providers/navProvider';
+import { useCategoryProvider } from '@/providers/categoryProvider';
 import { provide } from 'vue';
-import { useNav, useNavProvider } from '@/providers/navProvider';
-import { useCategory } from '@/composables/useCategory';
 import { useType } from '@/composables/useType';
 
 export default {
@@ -17,10 +17,8 @@ export default {
 	setup() {
 		useNavProvider();
 		useCateringEstablishmentsProvider();
-		const { currentCategory, setCategory } = useCategory();
+		useCategoryProvider();
 		const { currentType, setType } = useType();
-		provide('currentCategory', currentCategory);
-		provide('setCategory', setCategory);
 		provide('currentType', currentType);
 		provide('setType', setType);
 	},

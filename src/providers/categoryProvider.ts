@@ -1,3 +1,4 @@
+import { createProvider } from '@/utils/createProvider';
 import { ref } from 'vue';
 
 export const useCategory = () => {
@@ -10,3 +11,5 @@ export const useCategory = () => {
 		setCategory,
 	};
 };
+
+export const [useCategoryProvider, useCategoryContext] = createProvider('useCategory', useCategory);

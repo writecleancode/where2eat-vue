@@ -4,6 +4,7 @@ import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
 
 import { useNavContext } from '@/providers/navProvider';
+import { useCategoryContext } from '@/providers/categoryProvider';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { navCategories } from '@/data/navCategories';
 import { inject } from 'vue';
@@ -23,7 +24,7 @@ export default {
 
 	setup() {
 		const { closeMobileNav } = useNavContext();
-		const currentCategory = inject('currentCategory');
+		const { currentCategory } = useCategoryContext();
 		const currentType = inject('currentType');
 		const basePath = import.meta.env.VITE_BASE_PATH;
 

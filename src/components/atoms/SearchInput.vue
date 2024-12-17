@@ -2,6 +2,7 @@
 import SearchIcon from '@/assets/icons/SearchIcon.vue';
 
 import { inject, ref, watch } from 'vue';
+import { useCategoryContext } from '@/providers/categoryProvider';
 import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { usePlaces } from '@/hooks/usePlaces';
 import debounce from 'lodash.debounce';
@@ -13,7 +14,7 @@ export default {
 
 	setup() {
 		const inputValue = ref('');
-		const currentCategory = inject('currentCategory');
+		const { currentCategory } = useCategoryContext();
 		const currentType = inject('currentType');
 		const { setSortedCateringEstablishments, handleSearchState } = useCateringEstablishmentsContext();
 		const { findPlaces } = usePlaces();
