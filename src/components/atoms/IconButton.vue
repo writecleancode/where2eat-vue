@@ -40,13 +40,14 @@ export default {
 	overflow: hidden;
 	transition: border-radius 0.5s;
 
-	&:hover {
+	&:hover,
+	&:focus-visible {
 		border-radius: 20px;
 	}
 }
 
 .icon {
-	transition: clip-path 0.3s;
+	transition: clip-path 0.25s;
 	pointer-events: none;
 }
 
@@ -55,10 +56,10 @@ export default {
 	inset: 0;
 	padding: inherit;
 	background-color: #fff;
-	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+	clip-path: polygon(18% 82%, 82% 82%, 82% 82%, 18% 82%);
 
 	&.active {
-		clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+		clip-path: polygon(18% 18%, 82% 18%, 82% 82%, 18% 82%);
 	}
 }
 </style>

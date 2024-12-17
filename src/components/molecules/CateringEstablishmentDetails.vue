@@ -33,7 +33,7 @@ export default {
 	<div class="catering-establishments-details-wrapper">
 		<StyledPlaceName>{{ cateringEstablishment.name }}</StyledPlaceName>
 		<div class="list-and-img-wrapper">
-			<img :src="`/src/${cateringEstablishment.imgUrl}`" :alt="cateringEstablishment.imgAlt" class="styled-picture" />
+			<img :src="`${basePath}/${cateringEstablishment.imgUrl}`" :alt="cateringEstablishment.imgAlt" class="styled-picture" />
 			<ul class="styled-list">
 				<li v-for="openDetails in cateringEstablishment.openHours" :key="openDetails.DayOfWeek" class="styled-list-item">
 					<p>{{ openDetails.openingAt }} - {{ openDetails.closingAt }}</p>
