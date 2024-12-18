@@ -11,6 +11,8 @@
     },
 
     "target": "ES2023",
-    "lib": ["ES2023", "DOM"]
+    "lib": ["ES2023", "DOM"],
+
+    "types": ["vitest/globals"]
   }
 }
