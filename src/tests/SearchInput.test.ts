@@ -7,7 +7,7 @@ import CateringEstablishments from '@/views/CateringEstablishments.vue';
 
 const server = setupServer(...handlers);
 
-describe('Search Input', () => {
+describe('SearchInput', () => {
 	beforeAll(() => server.listen());
 	afterEach(() => server.resetHandlers());
 	afterAll(() => server.close());
