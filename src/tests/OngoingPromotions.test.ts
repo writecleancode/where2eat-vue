@@ -1,0 +1,75 @@
+import MockAdapter from 'axios-mock-adapter';
+import axios from 'axios';
+import { renderWithProviders } from '@/helpers/renderWithProviders';
+import { screen } from '@testing-library/vue';
+import OngoingPromotions from '@/views/OngoingPromotions.vue';
+
+const mock = new MockAdapter(axios);
+
+const query = `
+{
+	allPromotions {
+		placeName
+		image {
+			url
+			alt
+		}
+		promotionsList
+	}
+}
+`;
+
+describe('Ongoing Promotions', () => {
+	it('Checks if loading animations is displayed', () => {
+		mock
+			.onPost('https://graphql.datocms.com/', {
+				query,
+			})
+			.reply(200, {
+				data: {
+					allPromotions: [],
+				},
+			});
+        // the mock above is just to avoid console loggin error
+
+		renderWithProviders(OngoingPromotions);
+		screen.getByAltText('loading animation');
+	});
+
+	it('Checks if message is displayed when there are no promotions', async () => {
+		mock
+			.onPost('https://graphql.datocms.com/', {
+				query,
+			})
+			.reply(200, {
+				data: {
+					allPromotions: [],
+				},
+			});
+
+		renderWithProviders(OngoingPromotions);
+		await screen.findByText('There are no available promotions right now.');
+	});
+
+	it('Checks if promotions are displayed correctly', async () => {
+		mock
+			.onPost('https://graphql.datocms.com/', {
+				query,
+			})
+			.reply(200, {
+				data: {
+					allPromotions: [
+						{
+							placeName: 'Da Grasso',
+							image: { url: '/src/assets/img/da_grasso.jpg', alt: 'alt text' },
+							promotionsList:
+								'["Pepsi 0.5l to every takeaway order","2 x pizza 42cm for 20$","on wednesdays: large pizza at price of medium"]',
+						},
+					],
+				},
+			});
+
+		renderWithProviders(OngoingPromotions);
+		await screen.findByText(/large pizza at price of medium/);
+	});
+});
