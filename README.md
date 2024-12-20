@@ -1,4 +1,4 @@
-# Where2Eat (Vue)[![My Skills](https://skillicons.dev/icons?i=vue)](https://skillicons.dev)
+# ![My Skills](https://skillicons.dev/icons?i=vue) Where2Eat (Vue) 
 
 🌐 [**LIVE DEMO**](https://writecleancode.github.io/where2eat-vue/)
 
