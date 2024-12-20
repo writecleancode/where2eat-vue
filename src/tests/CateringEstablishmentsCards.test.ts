@@ -1,8 +1,7 @@
 import { setupServer } from 'msw/node';
 import { handlers } from '@/mocks/handlers';
-import { renderWithProviders } from '@/helpers/renderWithProviders';
+import { render, fireEvent, screen, waitFor } from '@/test-utils';
 import { router } from '@/router';
-import { fireEvent, screen, waitFor } from '@testing-library/vue';
 import { RouterView } from 'vue-router';
 import CateringEstablishments from '@/views/CateringEstablishments.vue';
 import NavLinksFilters from '@/components/molecules/NavLinksFilters.vue';
@@ -16,7 +15,7 @@ describe('CateringEstablishmentsCards', () => {
 	afterAll(() => server.close());
 
 	it('Checks if loading animation is displayed', async () => {
-		renderWithProviders(CateringEstablishments, {
+		render(CateringEstablishments, {
 			global: {
 				plugins: [router],
 			},
@@ -26,7 +25,7 @@ describe('CateringEstablishmentsCards', () => {
 	});
 
 	it('Checks if choosing place type displays only matching places', async () => {
-		renderWithProviders(
+		render(
 			{
 				components: { RouterView, NavLinksFilters },
 				template: `
@@ -61,7 +60,7 @@ describe('CateringEstablishmentsCards', () => {
 	});
 
 	it('Checks if choosing place category displays only matching places', async () => {
-		renderWithProviders(
+		render(
 			{
 				components: { RouterView, NavLinks },
 				template: `
@@ -96,7 +95,7 @@ describe('CateringEstablishmentsCards', () => {
 	});
 
 	it('Checks if message of no results is displayed if there are no matching places', async () => {
-		renderWithProviders(
+		render(
 			{
 				components: { RouterView, NavLinksFilters, NavLinks },
 				template: `

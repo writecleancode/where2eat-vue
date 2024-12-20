@@ -1,8 +1,7 @@
 import { setupServer } from 'msw/node';
 import { handlers } from '@/mocks/handlers';
-import { renderWithProviders } from '@/helpers/renderWithProviders';
+import { render, fireEvent, screen, waitFor } from '@/test-utils';
 import { router } from '@/router';
-import { fireEvent, screen, waitFor } from '@testing-library/vue';
 import CateringEstablishments from '@/views/CateringEstablishments.vue';
 
 const server = setupServer(...handlers);
@@ -13,7 +12,7 @@ describe('SearchInput', () => {
 	afterAll(() => server.close());
 
 	it('Checks if only matching place is displayed', async () => {
-		renderWithProviders(CateringEstablishments, {
+		render(CateringEstablishments, {
 			global: {
 				plugins: [router],
 			},
@@ -33,7 +32,7 @@ describe('SearchInput', () => {
 	});
 
 	it('Checks if message is displayed if there are no places matching search phrase', async () => {
-		renderWithProviders(CateringEstablishments, {
+		render(CateringEstablishments, {
 			global: {
 				plugins: [router],
 			},

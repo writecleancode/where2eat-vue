@@ -1,7 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import { renderWithProviders } from '@/helpers/renderWithProviders';
-import { screen } from '@testing-library/vue';
+import { render, screen } from '@/test-utils';
 import OngoingPromotions from '@/views/OngoingPromotions.vue';
 
 const mock = new MockAdapter(axios);
@@ -30,9 +29,9 @@ describe('Ongoing Promotions', () => {
 					allPromotions: [],
 				},
 			});
-        // the mock above is just to avoid console loggin error
+		// the mock above is just to avoid console loggin error
 
-		renderWithProviders(OngoingPromotions);
+		render(OngoingPromotions);
 		screen.getByAltText('loading animation');
 	});
 
@@ -47,7 +46,7 @@ describe('Ongoing Promotions', () => {
 				},
 			});
 
-		renderWithProviders(OngoingPromotions);
+		render(OngoingPromotions);
 		await screen.findByText('There are no available promotions right now.');
 	});
 
@@ -69,7 +68,7 @@ describe('Ongoing Promotions', () => {
 				},
 			});
 
-		renderWithProviders(OngoingPromotions);
+		render(OngoingPromotions);
 		await screen.findByText(/large pizza at price of medium/);
 	});
 });
