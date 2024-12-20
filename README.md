@@ -26,9 +26,9 @@ The application's function is to mimic finding dining establishments nearby.
 
 ## GENERAL INFO
 
-[Click to see **React** version](https://writecleancode.github.io/where2eat/)
-
 The application was written mainly to consolidate Vue, unit tests, Storybook and Typescript, and to practice data retrieval with the Rest API architecture using Axios.
+
+[Click to see repo of this app written with **React**](https://writecleancode.github.io/where2eat/)
 
 Part of the data is fetched from DatoCMS with GraphQL just to demonstrate the ability of using GraphQL.
 
