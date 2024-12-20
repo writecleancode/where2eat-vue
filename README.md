@@ -1,6 +1,6 @@
 # Where2Eat (Vue)
 
-🌐 [**LIVE DEMO**](https://writecleancode.github.io/where2eat-vue/)
+🌐 [**LIVE DEMO**](https://writecleancode.github.io/where2eat-vue/)[![My Skills](https://skillicons.dev/icons?i=vue)](https://skillicons.dev)
 
 
 
