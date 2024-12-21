@@ -14,6 +14,7 @@ import { useModal } from '@/composables/useModal';
 import { useError } from '@/composables/useError';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { basePath } from '@/utils/base-path';
 import axios from 'axios';
 
 export default {
@@ -37,7 +38,6 @@ export default {
 		const currentPlace = ref({});
 		const router = useRouter();
 		const route = useRoute();
-		const basePath = import.meta.env.VITE_BASE_PATH;
 		const { isModalOpen, handleOpenModal, closeModal } = useModal();
 		const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
 		const { setCategory } = useCategoryContext();

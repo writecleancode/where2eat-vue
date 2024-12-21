@@ -1,7 +1,9 @@
 <script lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import Xmark from '@/assets/icons/Xmark.vue';
+
 import type { PropType } from 'vue';
+import { basePath } from '@/utils/base-path';
 
 export default {
 	components: {
@@ -20,11 +22,7 @@ export default {
 	},
 
 	setup() {
-		const basePath = import.meta.env.VITE_BASE_PATH;
-
-		return {
-			basePath,
-		};
+		return { basePath };
 	},
 };
 </script>

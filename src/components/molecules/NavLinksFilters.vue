@@ -8,6 +8,7 @@ import { navCategories } from '@/data/navCategories';
 import { useNavContext } from '@/providers/navProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
+import { basePath } from '@/utils/base-path';
 
 export default {
 	components: {
@@ -26,7 +27,6 @@ export default {
 		const { closeMobileNav } = useNavContext();
 		const { currentCategory } = useCategoryContext();
 		const { currentType } = useTypeContext();
-		const basePath = import.meta.env.VITE_BASE_PATH;
 
 		const createPath = (basePath: string, category: string, type: string) => {
 			category = category || navCategories[0].path;
