@@ -5,6 +5,7 @@ import CateringEstablishments from '@/views/CateringEstablishments.vue';
 import OngoingPromotions from '@/views/OngoingPromotions.vue';
 
 const routes = [
+	{ path: `${basePath}`, component: CateringEstablishments },
 	{ path: `${basePath}/:category?/:type?`, component: CateringEstablishments },
 	{ path: `${basePath}/ongoing-promotions`, component: OngoingPromotions },
 ];
