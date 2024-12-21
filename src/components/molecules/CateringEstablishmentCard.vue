@@ -2,6 +2,8 @@
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import IconButton from '@/components/atoms/IconButton.vue';
 
+import { basePath } from '@/utils/base-path';
+
 export default {
 	components: {
 		StyledPlaceName,
@@ -32,6 +34,7 @@ export default {
 
 		return {
 			currentDay,
+			basePath,
 		};
 	},
 };
@@ -40,7 +43,7 @@ export default {
 <template>
 	<div class="catering-establishment-card-wrapper">
 		<StyledPlaceName class="title">{{ cateringEstablishment.name }}</StyledPlaceName>
-		<img :src="`/src/${cateringEstablishment.imgUrl}`" :alt="cateringEstablishment.imgAlt" class="picture" />
+		<img :src="`${basePath}/${cateringEstablishment.imgUrl}`" :alt="cateringEstablishment.imgAlt" class="picture" />
 		<div class="info-wrapper">
 			<div class="info-row">
 				<p class="info">{{ cateringEstablishment.distance }} km</p>
@@ -67,18 +70,18 @@ export default {
 		</div>
 		<div class="icons-wrapper">
 			<IconButton
-				iconUrl="/src/assets/icons/info.svg"
+				:iconUrl="`${basePath}/assets/icons/info.svg`"
 				label="Show more details"
 				v-on:click="handleOpenModal($event, cateringEstablishment.id)" />
 			<IconButton
-				iconUrl="/src/assets/icons/check.svg"
-				activeIconUrl="/src/assets/icons/check-fill.svg"
+				:iconUrl="`${basePath}/assets/icons/check.svg`"
+				:activeIconUrl="`${basePath}/assets/icons/check-fill.svg`"
 				label="Mark as visited"
 				:isActive="cateringEstablishment.isVisited"
 				v-on:click="handleVisitedStatus(index, cateringEstablishment.id)" />
 			<IconButton
-				iconUrl="/src/assets/icons/heart.svg"
-				activeIconUrl="/src/assets/icons/heart-fill.svg"
+				:iconUrl="`${basePath}/assets/icons/heart.svg`"
+				:activeIconUrl="`${basePath}/assets/icons/heart-fill.svg`"
 				label="Add to favourites"
 				:isActive="cateringEstablishment.isFavourite"
 				v-on:click="handleFavouritesStatus(index, cateringEstablishment.id)" />
