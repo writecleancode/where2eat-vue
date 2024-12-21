@@ -7,7 +7,6 @@ import { navCategories } from '@/data/navCategories';
 import { useNavContext } from '@/providers/navProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
-import { basePath } from '@/utils/base-path';
 
 export default {
 	components: {
@@ -30,7 +29,6 @@ export default {
 			navCategories,
 			currentCategory,
 			currentType,
-			basePath,
 			closeMobileNav,
 			handleOngoingPromotionsClick,
 		};
@@ -42,17 +40,14 @@ export default {
 	<NavButtonsWrapper>
 		<StyledNavLink
 			v-for="navCategory in navCategories"
-			:to="`${basePath}/${navCategory.path}/${currentType}`"
+			:to="`/${navCategory.path}/${currentType}`"
 			:isActive="currentCategory === navCategory.path"
 			v-on:click="closeMobileNav"
 			:key="navCategory.value">
 			{{ navCategory.title }}
 		</StyledNavLink>
 		<HorizontalLine />
-		<StyledNavLink
-			:to="`${basePath}/ongoing-promotions`"
-			:isActive="currentCategory === 'ongoing-promotions'"
-			v-on:click="handleOngoingPromotionsClick">
+		<StyledNavLink to="/ongoing-promotions" :isActive="currentCategory === 'ongoing-promotions'" v-on:click="handleOngoingPromotionsClick">
 			Ongoing Promotions
 		</StyledNavLink>
 	</NavButtonsWrapper>

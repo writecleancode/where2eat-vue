@@ -14,7 +14,6 @@ import { useModal } from '@/composables/useModal';
 import { useError } from '@/composables/useError';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { basePath } from '@/utils/base-path';
 import axios from 'axios';
 
 export default {
