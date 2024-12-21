@@ -95,10 +95,10 @@ export default {
 		});
 
 		if (!route.params.category) {
-			router.push(`${basePath}/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`);
+			router.push(`/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`);
 		}
 		if (route.params.category && route.params.category !== 'ongoing-promotions' && !route.params.type) {
-			router.push(`${basePath}/${route.params.category}/${cateringEstabilishmentsTypes[0].path}`);
+			router.push(`/${route.params.category}/${cateringEstabilishmentsTypes[0].path}`);
 		}
 
 		return {
