@@ -19,6 +19,7 @@ export default {
 		const { closeMobileNav } = useNavContext();
 		const { currentCategory } = useCategoryContext();
 		const { currentType, setType } = useTypeContext();
+		const basePath = import.meta.env.VITE_BASE_PATH;
 
 		const handleOngoingPromotionsClick = () => {
 			closeMobileNav();
@@ -29,6 +30,7 @@ export default {
 			navCategories,
 			currentCategory,
 			currentType,
+			basePath,
 			closeMobileNav,
 			handleOngoingPromotionsClick,
 		};
@@ -40,14 +42,17 @@ export default {
 	<NavButtonsWrapper>
 		<StyledNavLink
 			v-for="navCategory in navCategories"
-			:to="`/${navCategory.path}/${currentType}`"
+			:to="`${basePath}/${navCategory.path}/${currentType}`"
 			:isActive="currentCategory === navCategory.path"
 			v-on:click="closeMobileNav"
 			:key="navCategory.value">
 			{{ navCategory.title }}
 		</StyledNavLink>
 		<HorizontalLine />
-		<StyledNavLink to="/ongoing-promotions" :isActive="currentCategory === 'ongoing-promotions'" v-on:click="handleOngoingPromotionsClick">
+		<StyledNavLink
+			:to="`${basePath}/ongoing-promotions`"
+			:isActive="currentCategory === 'ongoing-promotions'"
+			v-on:click="handleOngoingPromotionsClick">
 			Ongoing Promotions
 		</StyledNavLink>
 	</NavButtonsWrapper>
