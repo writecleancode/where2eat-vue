@@ -72,19 +72,19 @@ export default {
 			<IconButton
 				:iconUrl="`${basePath}/assets/icons/info.svg`"
 				label="Show more details"
-				v-on:click="handleOpenModal($event, cateringEstablishment.id)" />
+				@click="handleOpenModal($event, cateringEstablishment.id)" />
 			<IconButton
 				:iconUrl="`${basePath}/assets/icons/check.svg`"
 				:activeIconUrl="`${basePath}/assets/icons/check-fill.svg`"
 				label="Mark as visited"
 				:isActive="cateringEstablishment.isVisited"
-				v-on:click="handleVisitedStatus(index, cateringEstablishment.id)" />
+				@click="handleVisitedStatus(index, cateringEstablishment.id)" />
 			<IconButton
 				:iconUrl="`${basePath}/assets/icons/heart.svg`"
 				:activeIconUrl="`${basePath}/assets/icons/heart-fill.svg`"
 				label="Add to favourites"
 				:isActive="cateringEstablishment.isFavourite"
-				v-on:click="handleFavouritesStatus(index, cateringEstablishment.id)" />
+				@click="handleFavouritesStatus(index, cateringEstablishment.id)" />
 		</div>
 	</div>
 </template>

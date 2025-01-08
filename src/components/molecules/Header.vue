@@ -25,12 +25,12 @@ export default {
 <template>
 	<header class="header-wrapper">
 		<div class="title-wrapper">
-			<a href="#" class="app-title" v-on:click="closeMobileNav">
+			<a href="#" class="app-title" @click="closeMobileNav">
 				<h1>Where2<span>Eat</span></h1>
 			</a>
 			<span class="decoration-line"></span>
 			<p class="app-description">Find place to kill your hunger</p>
-			<BurgerButton :isActive="isNavActive" v-on:click="handleMobileNav" />
+			<BurgerButton :isActive="isNavActive" @click="handleMobileNav" />
 		</div>
 	</header>
 	<MobileNav />

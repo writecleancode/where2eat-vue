@@ -43,7 +43,7 @@ export default {
 			<p>{{ cateringEstablishment.adressLong }}</p>
 			<p>{{ cateringEstablishment.phoneNumber }}</p>
 		</div>
-		<button id="close-modal-btn" class="close-modal-btn" v-on:click="closeModal" aria-label="close modal">
+		<button id="close-modal-btn" class="close-modal-btn" @click="closeModal" aria-label="close modal">
 			<Xmark />
 		</button>
 	</div>

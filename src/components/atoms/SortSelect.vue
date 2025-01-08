@@ -40,7 +40,7 @@ export default {
 
 <template>
 	<div class="sort-select-wrapper">
-		<select title="sort" class="styled-select" v-on:change="setSelectValue(($event.target as HTMLSelectElement).value)">
+		<select title="sort" class="styled-select" @change="setSelectValue(($event.target as HTMLSelectElement).value)">
 			<option v-for="option in sortOptions" :value="option.value" :key="option.value" class="styled-option">{{ option.text }}</option>
 		</select>
 		<ArrowDown class="select-arrow-down" />

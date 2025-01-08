@@ -2,6 +2,7 @@
 import MainTemplate from '@/components/templates/MainTemplate.vue';
 import CateringEstablishments from '@/views/CateringEstablishments.vue';
 
+import { handlePageReload } from './utils/ghPagesReloadHandler';
 import { useCateringEstablishmentsProvider } from './providers/cateringEstablishmentsProvider';
 import { useNavProvider } from '@/providers/navProvider';
 import { useCategoryProvider } from '@/providers/categoryProvider';
@@ -14,6 +15,8 @@ export default {
 	},
 
 	setup() {
+		handlePageReload();
+
 		useNavProvider();
 		useCateringEstablishmentsProvider();
 		useCategoryProvider();

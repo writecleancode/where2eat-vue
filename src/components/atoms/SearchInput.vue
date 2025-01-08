@@ -49,7 +49,7 @@ export default {
 
 <template>
 	<div class="search-input-wrapper">
-		<input type="text" id="search" aria-label="search" class="styled-input" :value="inputValue" v-on:input="handleSearchInput" />
+		<input type="text" id="search" aria-label="search" class="styled-input" :value="inputValue" @input="handleSearchInput" />
 		<label for="search" class="styled-label">
 			<SearchIcon class="styled-icon" />
 		</label>

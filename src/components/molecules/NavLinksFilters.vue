@@ -56,7 +56,7 @@ export default {
 			:isReversed="true"
 			:isDisabled="currentCategory === 'ongoing-promotions'"
 			:tabindex="currentCategory === 'ongoing-promotions' ? '-1' : '0'"
-			v-on:click="closeMobileNav">
+			@click="closeMobileNav">
 			{{ cateringEstabilishmentsType.title }}
 		</StyledNavLink>
 	</NavButtonsWrapper>

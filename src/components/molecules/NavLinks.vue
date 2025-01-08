@@ -44,7 +44,7 @@ export default {
 			v-for="navCategory in navCategories"
 			:to="`${basePath}/${navCategory.path}/${currentType}`"
 			:isActive="currentCategory === navCategory.path"
-			v-on:click="closeMobileNav"
+			@click="closeMobileNav"
 			:key="navCategory.value">
 			{{ navCategory.title }}
 		</StyledNavLink>
@@ -52,7 +52,7 @@ export default {
 		<StyledNavLink
 			:to="`${basePath}/ongoing-promotions`"
 			:isActive="currentCategory === 'ongoing-promotions'"
-			v-on:click="handleOngoingPromotionsClick">
+			@click="handleOngoingPromotionsClick">
 			Ongoing Promotions
 		</StyledNavLink>
 	</NavButtonsWrapper>

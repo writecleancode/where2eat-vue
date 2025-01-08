@@ -145,7 +145,7 @@ git clone https://github.com/writecleancode/where2eat-vue
 2. Navigate to the project directory:
 
 ```
-cd where2eat
+cd where2eat-vue
 ```
 
 3. Install the dependencies:
