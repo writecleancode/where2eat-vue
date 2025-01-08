@@ -1,5 +1,4 @@
 import { useRouter } from 'vue-router';
-import { basePath } from './base-path';
 import { onMounted } from 'vue';
 
 export const handlePageReload = () => {
@@ -9,7 +8,7 @@ export const handlePageReload = () => {
 		let path = localStorage.getItem('path');
 		if (path) {
 			localStorage.removeItem('path');
-			router.push(`/${path.slice(basePath.length)}`);
+			router.push(`/${path}`);
 		}
 	});
 };
