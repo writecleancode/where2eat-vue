@@ -30,5 +30,3 @@ export default {
 		<RouterView />
 	</MainTemplate>
 </template>
-
-<style scoped></style>
