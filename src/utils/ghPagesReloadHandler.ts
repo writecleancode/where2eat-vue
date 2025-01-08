@@ -9,6 +9,7 @@ export const handlePageReload = () => {
 		if (path) {
 			localStorage.removeItem('path');
 			console.log(path);
+			console.log(`/${path}`);
 			// router.push(`/${path}`);
 		}
 	});
