@@ -10,7 +10,8 @@ export const handlePageReload = () => {
 			// localStorage.removeItem('path');
 			console.log(path);
 			// router.push(`/${path}`);
-			router.push(`/where2eat-vue/ongoing-promotions`);
+			router.push(`/where2eat-vue/all/any`);
+			console.log(path === '/where2eat-vue/ongoing-promotions');
 		}
 	});
 };
