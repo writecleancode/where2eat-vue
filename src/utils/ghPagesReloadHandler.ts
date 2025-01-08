@@ -7,11 +7,8 @@ export const handlePageReload = () => {
 	onMounted(() => {
 		let path = localStorage.getItem('path');
 		if (path) {
-			// localStorage.removeItem('path');
-			console.log(path);
-			// router.push(`/${path}`);
-			router.push(`/where2eat-vue/all/any`);
-			console.log(path === '/where2eat-vue/ongoing-promotions');
+			localStorage.removeItem('path');
+			router.push(path);
 		}
 	});
 };
