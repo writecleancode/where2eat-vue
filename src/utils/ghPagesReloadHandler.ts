@@ -11,6 +11,7 @@ export const handlePageReload = () => {
 			console.log(path);
 			console.log(`/${path}`);
 			// router.push(`/${path}`);
+			router.push(`/where2eat/ongoing-promotions`);
 		}
 	});
 };
