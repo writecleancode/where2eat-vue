@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools';
 const baseUrl = process.env.NODE_ENV === 'development' ? './' : '/where2eat-vue/';
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(() => ({
 	plugins: [vue(), vueDevTools()],
 	resolve: {
 		alias: {
@@ -20,4 +20,4 @@ export default defineConfig({
 		environment: 'happy-dom',
 		setupFiles: './vitest.setup.ts',
 	},
-});
+}));
