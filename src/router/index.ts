@@ -8,7 +8,7 @@ const routes = [
 	{ path: `${basePath}`, component: CateringEstablishments },
 	{ path: `${basePath}/:category?/:type?`, component: CateringEstablishments },
 	{ path: `${basePath}/ongoing-promotions`, component: OngoingPromotions },
-	{ path: `${basePath}/:pathPatch(.*)*`, redirect: `${basePath}` },
+	// { path: `${basePath}/:pathPatch(.*)*`, redirect: `${basePath}` },
 ];
 
 export const router = createRouter({
