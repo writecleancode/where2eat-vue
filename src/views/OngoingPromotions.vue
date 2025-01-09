@@ -6,7 +6,6 @@ import NoResultsText from '@/components/atoms/NoResultsText.vue';
 import { usePromotions } from '@/hooks/usePromotions';
 import { useLoading } from '@/composables/useLoading';
 import { useCategoryContext } from '@/providers/categoryProvider';
-import { handlePageReload } from '@/utils/ghPagesReloadHandler';
 import { onMounted } from 'vue';
 
 export default {
@@ -20,7 +19,6 @@ export default {
 		const { promotions, getPromotionsData } = usePromotions();
 		const { isLoading, setLoadingCompleted } = useLoading();
 		const { setCategory } = useCategoryContext();
-		handlePageReload()
 
 		onMounted(() => {
 			setCategory('ongoing-promotions');
