@@ -8,7 +8,7 @@ export const handlePageReload = () => {
 		let path = localStorage.getItem('path');
 		if (path) {
 			localStorage.removeItem('path');
-			// router.push(path);
+			router.push(path);
 			// router.push('/where2eat-vue/ongoing-promotions');
 		}
 	});
