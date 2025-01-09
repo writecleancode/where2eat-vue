@@ -7,7 +7,6 @@ import { useCateringEstablishmentsProvider } from './providers/cateringEstablish
 import { useNavProvider } from '@/providers/navProvider';
 import { useCategoryProvider } from '@/providers/categoryProvider';
 import { useTypeProvider } from '@/providers/typeProvider';
-import { onMounted } from 'vue';
 
 export default {
 	components: {

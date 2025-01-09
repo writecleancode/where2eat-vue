@@ -8,10 +8,11 @@
     <title>Where2Eat - find place to kill your hunger</title>
 
     <script>
-        const path = window.location.pathname;
+        const fullUrl = window.location
+        const path = fullUrl.pathname;
         localStorage.setItem('path', path);
-        // window.location.href = '../';
-        window.location.href = 'https://writecleancode.github.io/where2eat-vue';
+        const baseUrl = `${fullUrl.origin}${fullUrl.pathname.split('/').slice(0, 2).join('/')}/`
+        window.location.href = baseUrl;
     </script>
 </head>
 

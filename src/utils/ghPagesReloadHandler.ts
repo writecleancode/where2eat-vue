@@ -9,7 +9,6 @@ export const handlePageReload = () => {
 		if (path) {
 			localStorage.removeItem('path');
 			router.push(path);
-			// router.push('/where2eat-vue/ongoing-promotions');
 		}
 	});
 };
