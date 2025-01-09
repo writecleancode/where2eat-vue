@@ -9,8 +9,10 @@
 
     <script>
         const fullUrl = window.location
+
         const path = fullUrl.pathname;
         localStorage.setItem('path', path);
+        
         const baseUrl = `${fullUrl.origin}${fullUrl.pathname.split('/').slice(0, 2).join('/')}/`
         window.location.href = baseUrl;
     </script>
