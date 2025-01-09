@@ -21,11 +21,12 @@ export default {
 		const { setCategory } = useCategoryContext();
 
 		onMounted(() => {
+			setCategory('ongoing-promotions');
 			(async () => {
 				await getPromotionsData();
 				setLoadingCompleted();
 			})();
-			setCategory('ongoing-promotions');
+			console.log('działa');
 		});
 
 		return {

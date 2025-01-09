@@ -4,11 +4,12 @@ import { onMounted } from 'vue';
 export const handlePageReload = () => {
 	const router = useRouter();
 
-	onMounted(() => {
+	onMounted(async () => {
 		let path = localStorage.getItem('path');
 		if (path) {
 			localStorage.removeItem('path');
 			// router.push(path);
+			await router.isReady()
 			router.push('/where2eat-vue/ongoing-promotions');
 		}
 	});

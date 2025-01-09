@@ -22,10 +22,6 @@ export default {
 		useCateringEstablishmentsProvider();
 		useCategoryProvider();
 		useTypeProvider();
-
-		onMounted(() => {
-			console.log('działa');
-		});
 	},
 };
 </script>

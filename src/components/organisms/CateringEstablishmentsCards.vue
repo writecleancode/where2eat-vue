@@ -94,8 +94,6 @@ export default {
 				: clearErrorMessage();
 		});
 
-		console.log(route.params.category);
-
 		if (!route.params.category) {
 			router.push(`${basePath}/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`);
 		}
