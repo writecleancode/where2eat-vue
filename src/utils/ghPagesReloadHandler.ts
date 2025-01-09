@@ -6,34 +6,10 @@ export const handlePageReload = () => {
 
 	onMounted(() => {
 		let path = localStorage.getItem('path');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
-		console.log('działa');
 		if (path) {
+			localStorage.removeItem('path');
 			// router.push(path);
 			router.push('/where2eat-vue/ongoing-promotions');
-			localStorage.removeItem('path');
 		}
 	});
 };
