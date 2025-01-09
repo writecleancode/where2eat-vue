@@ -1,13 +1,13 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite';
+import { defineConfig as defineVitestConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 import vueDevTools from 'vite-plugin-vue-devtools';
 
 const baseUrl = process.env.NODE_ENV === 'development' ? './' : '/where2eat-vue/';
 
-// https://vite.dev/config/
-export default defineConfig(() => ({
+const viteConfig = defineViteConfig({
 	plugins: [vue(), vueDevTools()],
 	resolve: {
 		alias: {
@@ -15,9 +15,21 @@ export default defineConfig(() => ({
 		},
 	},
 	base: baseUrl,
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern',
+			},
+		},
+	},
+});
+
+const vitestConfig = defineVitestConfig({
 	test: {
 		globals: true,
 		environment: 'happy-dom',
 		setupFiles: './vitest.setup.ts',
 	},
-}));
+});
+
+export default mergeConfig(viteConfig, vitestConfig);
