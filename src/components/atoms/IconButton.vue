@@ -1,21 +1,19 @@
-<script lang="ts">
-export default {
-	props: {
-		label: {
-			type: String,
-		},
-		iconUrl: {
-			type: String,
-		},
-		activeIconUrl: {
-			type: String,
-		},
-		isActive: {
-			type: Boolean,
-			default: false,
-		},
+<script setup lang="ts">
+const props = defineProps({
+	label: {
+		type: String,
 	},
-};
+	iconUrl: {
+		type: String,
+	},
+	activeIconUrl: {
+		type: String,
+	},
+	isActive: {
+		type: Boolean,
+		default: false,
+	},
+});
 </script>
 
 <template>

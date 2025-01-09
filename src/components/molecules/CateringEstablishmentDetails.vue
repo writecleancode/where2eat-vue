@@ -1,30 +1,19 @@
-<script lang="ts">
+<script setup lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import Xmark from '@/assets/icons/Xmark.vue';
 
 import type { PropType } from 'vue';
 import { basePath } from '@/utils/base-path';
 
-export default {
-	components: {
-		StyledPlaceName,
-		Xmark,
+const props = defineProps({
+	cateringEstablishment: {
+		type: Object,
+		required: true,
 	},
-
-	props: {
-		cateringEstablishment: {
-			type: Object,
-			required: true,
-		},
-		closeModal: {
-			type: Function as PropType<() => void>,
-		},
+	closeModal: {
+		type: Function as PropType<() => void>,
 	},
-
-	setup() {
-		return { basePath };
-	},
-};
+});
 </script>
 
 <template>

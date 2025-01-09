@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import NavButtonsWrapper from '@/components/atoms/NavButtonsWrapper.vue';
 import StyledNavLink from '@/components/atoms/StyledNavLink.vue';
 import HorizontalLine from '@/components/atoms/HorizontalLine.vue';
@@ -10,39 +10,20 @@ import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
 import { basePath } from '@/utils/base-path';
 
-export default {
-	components: {
-		NavButtonsWrapper,
-		StyledNavLink,
-		HorizontalLine,
+const props = defineProps({
+	isDesktop: {
+		type: Boolean,
 	},
+});
 
-	props: {
-		isDesktop: {
-			type: Boolean,
-		},
-	},
+const { closeMobileNav } = useNavContext();
+const { currentCategory } = useCategoryContext();
+const { currentType } = useTypeContext();
 
-	setup() {
-		const { closeMobileNav } = useNavContext();
-		const { currentCategory } = useCategoryContext();
-		const { currentType } = useTypeContext();
+const createPath = (basePath: string, category: string, type: string) => {
+	category = category || navCategories[0].path;
 
-		const createPath = (basePath: string, category: string, type: string) => {
-			category = category || navCategories[0].path;
-
-			return `${basePath}/${category}/${type}`;
-		};
-
-		return {
-			cateringEstabilishmentsTypes,
-			closeMobileNav,
-			currentCategory,
-			currentType,
-			basePath,
-			createPath,
-		};
-	},
+	return `${basePath}/${category}/${type}`;
 };
 </script>
 

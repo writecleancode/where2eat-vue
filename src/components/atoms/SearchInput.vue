@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import SearchIcon from '@/assets/icons/SearchIcon.vue';
 
 import { ref, watch } from 'vue';
@@ -8,43 +8,30 @@ import { useTypeContext } from '@/providers/typeProvider';
 import { usePlaces } from '@/hooks/usePlaces';
 import debounce from 'lodash.debounce';
 
-export default {
-	components: {
-		SearchIcon,
-	},
+const inputValue = ref('');
+const { currentCategory } = useCategoryContext();
+const { currentType } = useTypeContext();
+const { setSortedCateringEstablishments, handleSearchState } = useCateringEstablishmentsContext();
+const { findPlaces } = usePlaces();
 
-	setup() {
-		const inputValue = ref('');
-		const { currentCategory } = useCategoryContext();
-		const { currentType } = useTypeContext();
-		const { setSortedCateringEstablishments, handleSearchState } = useCateringEstablishmentsContext();
-		const { findPlaces } = usePlaces();
+const getMatchingPlaces = debounce(async (searchPhrase: string) => {
+	const matchingPlaces = await findPlaces(currentCategory.value, currentType.value, searchPhrase.trim());
+	setSortedCateringEstablishments(matchingPlaces);
 
-		const getMatchingPlaces = debounce(async (searchPhrase: string) => {
-			const matchingPlaces = await findPlaces(currentCategory.value, currentType.value, searchPhrase.trim());
-			setSortedCateringEstablishments(matchingPlaces);
+	handleSearchState(searchPhrase);
+}, 500);
 
-			handleSearchState(searchPhrase);
-		}, 500);
+const handleSearchInput = async (e: Event) => {
+	const target = e.target as HTMLInputElement;
+	inputValue.value = target.value;
 
-		const handleSearchInput = async (e: Event) => {
-			const target = e.target as HTMLInputElement;
-			inputValue.value = target.value;
-
-			if (!currentCategory || !currentType) return;
-			getMatchingPlaces(target.value);
-		};
-
-		watch([currentCategory, currentType], () => {
-			inputValue.value = '';
-		});
-
-		return {
-			inputValue,
-			handleSearchInput,
-		};
-	},
+	if (!currentCategory || !currentType) return;
+	getMatchingPlaces(target.value);
 };
+
+watch([currentCategory, currentType], () => {
+	inputValue.value = '';
+});
 </script>
 
 <template>

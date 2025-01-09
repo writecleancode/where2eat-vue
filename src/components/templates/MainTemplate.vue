@@ -1,17 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
 import Header from '@/components/molecules/Header.vue';
 import NavDesktopColumn from '@/components/molecules/NavDesktopColumn.vue';
 import NavLinksFilters from '@/components/molecules/NavLinksFilters.vue';
 import NavLinks from '@/components/molecules/NavLinks.vue';
-
-export default {
-	components: {
-		Header,
-		NavDesktopColumn,
-		NavLinksFilters,
-		NavLinks,
-	},
-};
 </script>
 
 <template>

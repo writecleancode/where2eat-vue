@@ -1,15 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
 import SortSelect from '@/components/atoms/SortSelect.vue';
 import SearchInput from '@/components/atoms/SearchInput.vue';
 import CateringEstablishmentsCards from '@/components/organisms/CateringEstablishmentsCards.vue';
-
-export default {
-	components: {
-		SortSelect,
-		SearchInput,
-		CateringEstablishmentsCards,
-	},
-};
 </script>
 
 <template>

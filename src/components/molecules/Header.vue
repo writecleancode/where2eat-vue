@@ -1,25 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
 import BurgerButton from '@/components/atoms/BurgerButton.vue';
 import MobileNav from '@/components/organisms/MobileNav.vue';
 
 import { useNavContext } from '@/providers/navProvider';
 
-export default {
-	components: {
-		BurgerButton,
-		MobileNav,
-	},
-
-	setup() {
-		const { isNavActive, handleMobileNav, closeMobileNav } = useNavContext();
-
-		return {
-			isNavActive,
-			handleMobileNav,
-			closeMobileNav,
-		};
-	},
-};
+const { isNavActive, handleMobileNav, closeMobileNav } = useNavContext();
 </script>
 
 <template>

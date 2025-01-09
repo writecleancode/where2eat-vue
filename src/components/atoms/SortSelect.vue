@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import ArrowDown from '@/assets/icons/ArrowDown.vue';
 
 import type { sortOptionsType } from '@/types/types';
@@ -7,35 +7,22 @@ import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishm
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 
-export default {
-	components: {
-		ArrowDown,
-	},
+const sortOptions = ref<sortOptionsType[]>([]);
+const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishmentsContext();
+const { getSortOptions } = usePlaces();
+const { handleSortPlaces } = useSort();
 
-	setup() {
-		const sortOptions = ref<sortOptionsType[]>([]);
-		const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishmentsContext();
-		const { getSortOptions } = usePlaces();
-		const { handleSortPlaces } = useSort();
+onMounted(async () => {
+	const data = await getSortOptions();
+	sortOptions.value = data;
+});
 
-		onMounted(async () => {
-			const data = await getSortOptions();
-			sortOptions.value = data;
-		});
+watch(selectValue, () => {
+	if (!cateringEstablishments.value.length) return;
 
-		watch(selectValue, () => {
-			if (!cateringEstablishments.value.length) return;
-
-			const data = handleSortPlaces(cateringEstablishments.value, selectValue.value);
-			setCateringEstablishments(data);
-		});
-
-		return {
-			sortOptions,
-			setSelectValue,
-		};
-	},
-};
+	const data = handleSortPlaces(cateringEstablishments.value, selectValue.value);
+	setCateringEstablishments(data);
+});
 </script>
 
 <template>

@@ -1,7 +1,3 @@
-<script lang="ts">
-export default {};
-</script>
-
 <template>
 	<div class="loading-gif-wrapper">
 		<img src="/src/assets/img/loading_animation.gif" alt="loading animation" class="styled-img" />

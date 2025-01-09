@@ -1,12 +1,10 @@
-<script lang="ts">
-export default {
-	props: {
-		isLargeScreenOnly: {
-			type: Boolean,
-			default: false,
-		},
+<script setup lang="ts">
+const props = defineProps({
+	isLargeScreenOnly: {
+		type: Boolean,
+		default: false,
 	},
-};
+});
 </script>
 
 <template>

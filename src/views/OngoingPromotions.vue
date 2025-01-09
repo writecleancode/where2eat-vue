@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import LoadingGif from '@/components/atoms/LoadingGif.vue';
 import PromotionsCard from '@/components/molecules/PromotionsCard.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
@@ -8,32 +8,17 @@ import { useLoading } from '@/composables/useLoading';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { onMounted } from 'vue';
 
-export default {
-	components: {
-		LoadingGif,
-		PromotionsCard,
-		NoResultsText,
-	},
+const { promotions, getPromotionsData } = usePromotions();
+const { isLoading, setLoadingCompleted } = useLoading();
+const { setCategory } = useCategoryContext();
 
-	setup() {
-		const { promotions, getPromotionsData } = usePromotions();
-		const { isLoading, setLoadingCompleted } = useLoading();
-		const { setCategory } = useCategoryContext();
-
-		onMounted(() => {
-			(async () => {
-				await getPromotionsData();
-				setLoadingCompleted();
-			})();
-			setCategory('ongoing-promotions');
-		});
-
-		return {
-			isLoading,
-			promotions,
-		};
-	},
-};
+onMounted(() => {
+	(async () => {
+		await getPromotionsData();
+		setLoadingCompleted();
+	})();
+	setCategory('ongoing-promotions');
+});
 </script>
 
 <template>

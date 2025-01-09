@@ -1,23 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
 import NavLinksFilters from '@/components/molecules/NavLinksFilters.vue';
 import NavLinks from '@/components/molecules/NavLinks.vue';
 
 import { useNavContext } from '@/providers/navProvider';
 
-export default {
-	components: {
-		NavLinksFilters,
-		NavLinks,
-	},
-
-	setup() {
-		const { isNavActive } = useNavContext();
-
-		return {
-			isNavActive,
-		};
-	},
-};
+const { isNavActive } = useNavContext();
 </script>
 
 <template>

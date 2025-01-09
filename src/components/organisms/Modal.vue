@@ -1,24 +1,20 @@
-<script lang="ts">
+<script setup lang="ts">
 import { onClickOutside, type MaybeElement, type OnClickOutsideHandler } from '@vueuse/core';
 import { useTemplateRef } from 'vue';
 
-export default {
-	props: {
-		isModalOpen: {
-			type: Boolean,
-			default: false,
-		},
-		closeModal: {
-			type: Function,
-		},
+const { closeModal } = defineProps({
+	isModalOpen: {
+		type: Boolean,
+		default: false,
 	},
-
-	setup({ closeModal }) {
-		const modal = useTemplateRef<MaybeElement>('my-modal');
-
-		onClickOutside(modal, closeModal as OnClickOutsideHandler);
+	closeModal: {
+		type: Function,
 	},
-};
+});
+
+const modal = useTemplateRef<MaybeElement>('my-modal');
+
+onClickOutside(modal, closeModal as OnClickOutsideHandler);
 </script>
 
 <template>

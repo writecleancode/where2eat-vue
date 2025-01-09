@@ -1,24 +1,22 @@
-<script lang="ts">
-export default {
-	props: {
-		to: {
-			type: String,
-			required: true,
-		},
-		isActive: {
-			type: Boolean,
-			default: false,
-		},
-		isReversed: {
-			type: Boolean,
-			default: false,
-		},
-		isDisabled: {
-			type: Boolean,
-			default: false,
-		},
+<script setup lang="ts">
+const props = defineProps({
+	to: {
+		type: String,
+		required: true,
 	},
-};
+	isActive: {
+		type: Boolean,
+		default: false,
+	},
+	isReversed: {
+		type: Boolean,
+		default: false,
+	},
+	isDisabled: {
+		type: Boolean,
+		default: false,
+	},
+});
 </script>
 
 <template>

@@ -1,12 +1,10 @@
-<script lang="ts">
-export default {
-	props: {
-		isActive: {
-			type: Boolean,
-			default: false,
-		},
+<script setup lang="ts">
+const props = defineProps({
+	isActive: {
+		type: Boolean,
+		default: false,
 	},
-};
+});
 </script>
 
 <template>

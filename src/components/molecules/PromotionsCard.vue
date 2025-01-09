@@ -1,18 +1,12 @@
-<script lang="ts">
-import StyledPlaceName from '../atoms/StyledPlaceName.vue';
+<script setup lang="ts">
+import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 
-export default {
-	components: {
-		StyledPlaceName,
+const props = defineProps({
+	promotionItem: {
+		type: Object,
+		required: true,
 	},
-
-	props: {
-		promotionItem: {
-			type: Object,
-			required: true,
-		},
-	},
-};
+});
 </script>
 
 <template>

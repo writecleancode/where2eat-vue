@@ -1,43 +1,29 @@
-<script lang="ts">
+<script setup lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import IconButton from '@/components/atoms/IconButton.vue';
 
 import { basePath } from '@/utils/base-path';
 
-export default {
-	components: {
-		StyledPlaceName,
-		IconButton,
+const props = defineProps({
+	cateringEstablishment: {
+		type: Object,
+		required: true,
 	},
-
-	props: {
-		cateringEstablishment: {
-			type: Object,
-			required: true,
-		},
-		index: {
-			type: Number,
-		},
-		handleVisitedStatus: {
-			type: Function,
-		},
-		handleFavouritesStatus: {
-			type: Function,
-		},
-		handleOpenModal: {
-			type: Function,
-		},
+	index: {
+		type: Number,
 	},
-
-	setup() {
-		const currentDay = new Date().getDay();
-
-		return {
-			currentDay,
-			basePath,
-		};
+	handleVisitedStatus: {
+		type: Function,
 	},
-};
+	handleFavouritesStatus: {
+		type: Function,
+	},
+	handleOpenModal: {
+		type: Function,
+	},
+});
+
+const currentDay = new Date().getDay();
 </script>
 
 <template>
