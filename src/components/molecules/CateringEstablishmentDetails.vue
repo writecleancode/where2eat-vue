@@ -5,7 +5,7 @@ import Xmark from '@/assets/icons/Xmark.vue';
 import type { PropType } from 'vue';
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	cateringEstablishment: {
 		type: Object,
 		required: true,

@@ -4,7 +4,7 @@ import IconButton from '@/components/atoms/IconButton.vue';
 
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	cateringEstablishment: {
 		type: Object,
 		required: true,

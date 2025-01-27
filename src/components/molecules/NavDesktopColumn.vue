@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
 	isLargeScreenOnly: {
 		type: Boolean,
 		default: false,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 
-const props = defineProps({
+defineProps({
 	promotionItem: {
 		type: Object,
 		required: true,

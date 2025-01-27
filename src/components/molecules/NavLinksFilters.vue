@@ -10,7 +10,7 @@ import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
 import { basePath } from '@/utils/base-path';
 
-const props = defineProps({
+defineProps({
 	isDesktop: {
 		type: Boolean,
 	},
