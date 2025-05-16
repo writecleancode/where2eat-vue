@@ -1,22 +1,10 @@
 <script setup lang="ts">
-defineProps({
-	to: {
-		type: String,
-		required: true,
-	},
-	isActive: {
-		type: Boolean,
-		default: false,
-	},
-	isReversed: {
-		type: Boolean,
-		default: false,
-	},
-	isDisabled: {
-		type: Boolean,
-		default: false,
-	},
-});
+const { isActive = false, isReversed = false, isDisabled = false } = defineProps<{
+	to: Record<string, any>,
+	isActive?: boolean,
+	isReversed?: boolean,
+	isDisabled?: boolean,
+}>();
 </script>
 
 <template>

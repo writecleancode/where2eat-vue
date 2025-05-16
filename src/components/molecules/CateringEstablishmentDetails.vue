@@ -2,35 +2,30 @@
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import Xmark from '@/assets/icons/Xmark.vue';
 
-import type { PropType } from 'vue';
+import type { CatetingEstablishmentsType } from '@/types/types';
 import { basePath } from '@/utils/base-path';
 
-defineProps({
-	cateringEstablishment: {
-		type: Object,
-		required: true,
-	},
-	closeModal: {
-		type: Function as PropType<() => void>,
-	},
-});
+defineProps<{
+	cateringEstablishment: CatetingEstablishmentsType | null,
+	closeModal: () => void,
+}>();
 </script>
 
 <template>
 	<div class="catering-establishments-details-wrapper">
-		<StyledPlaceName>{{ cateringEstablishment.name }}</StyledPlaceName>
+		<StyledPlaceName>{{ cateringEstablishment?.name }}</StyledPlaceName>
 		<div class="list-and-img-wrapper">
-			<img :src="`${basePath}/${cateringEstablishment.imgUrl}`" :alt="cateringEstablishment.imgAlt" class="styled-picture" />
+			<img :src="`${basePath}/${cateringEstablishment?.imgUrl}`" :alt="cateringEstablishment?.imgAlt" class="styled-picture" />
 			<ul class="styled-list">
-				<li v-for="openDetails in cateringEstablishment.openHours" :key="openDetails.DayOfWeek" class="styled-list-item">
+				<li v-for="openDetails in cateringEstablishment?.openHours" :key="openDetails.dayOfWeek" class="styled-list-item">
 					<p>{{ openDetails.openingAt }} - {{ openDetails.closingAt }}</p>
 					<p class="day-of-week">{{ openDetails.dayOfWeek }}</p>
 				</li>
 			</ul>
 		</div>
 		<div class="contact-wrapper">
-			<p>{{ cateringEstablishment.adressLong }}</p>
-			<p>{{ cateringEstablishment.phoneNumber }}</p>
+			<p>{{ cateringEstablishment?.adressLong }}</p>
+			<p>{{ cateringEstablishment?.phoneNumber }}</p>
 		</div>
 		<button id="close-modal-btn" class="close-modal-btn" @click="closeModal" aria-label="close modal">
 			<Xmark />

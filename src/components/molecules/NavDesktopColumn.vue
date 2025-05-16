@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-	isLargeScreenOnly: {
-		type: Boolean,
-		default: false,
-	},
-});
+const { isLargeScreenOnly = false } = defineProps<{
+	isLargeScreenOnly?: boolean,
+}>();
 </script>
 
 <template>

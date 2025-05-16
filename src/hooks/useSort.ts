@@ -1,7 +1,7 @@
-import type { catetingEstablishmentsType } from '@/types/types';
+import type { CatetingEstablishmentsType } from '@/types/types';
 
 export const useSort = () => {
-	const handleSortPlaces = (cateringEstablishments: catetingEstablishmentsType[], sortValue: string) => {
+	const handleSortPlaces = (cateringEstablishments: CatetingEstablishmentsType[], sortValue: string) => {
 		switch (sortValue) {
 			case 'byAlphabet':
 				return cateringEstablishments.toSorted((a, b) => {

@@ -1,4 +1,4 @@
-export type catetingEstablishmentsType = {
+export type CatetingEstablishmentsType = {
 	id: string;
 	type: string;
 	typeName: string;
@@ -25,7 +25,7 @@ export type DatoCmsPromotionsDataType = {
 	promotionsList: string;
 };
 
-export type promotionsDataType = {
+export type PromotionsDataType = {
 	placeName: string;
 	image: {
 		url: string;
@@ -34,7 +34,7 @@ export type promotionsDataType = {
 	promotionsList: string[];
 };
 
-export type sortOptionsType = {
+export type SortOptionsType = {
 	text: string;
 	value: string;
 };

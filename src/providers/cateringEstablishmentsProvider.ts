@@ -1,4 +1,4 @@
-import type { catetingEstablishmentsType } from '@/types/types';
+import type { CatetingEstablishmentsType } from '@/types/types';
 
 import { sortOptions } from '@/data/sortOptions';
 import { ref } from 'vue';
@@ -10,14 +10,14 @@ import { createProvider } from '@/utils/createProvider';
 const initialSearchState = false;
 
 const useCateringEstablishments = () => {
-	const cateringEstablishments = ref<catetingEstablishmentsType[]>([]);
+	const cateringEstablishments = ref<CatetingEstablishmentsType[]>([]);
 	const selectValue = ref(sortOptions[0].value);
 	const isSearchActive = ref(initialSearchState);
 	const { isLoading, setLoadingCompleted } = useLoading();
 	const { getCateringEstablishments } = usePlaces();
 	const { handleSortPlaces } = useSort();
 
-	const setCateringEstablishments = (cateringEstablishmentsToSet: catetingEstablishmentsType[]) => {
+	const setCateringEstablishments = (cateringEstablishmentsToSet: CatetingEstablishmentsType[]) => {
 		cateringEstablishments.value = cateringEstablishmentsToSet;
 	};
 
@@ -25,7 +25,7 @@ const useCateringEstablishments = () => {
 		selectValue.value = selectValueToSet;
 	};
 
-	const setSortedCateringEstablishments = (placesToSort: catetingEstablishmentsType[]) => {
+	const setSortedCateringEstablishments = (placesToSort: CatetingEstablishmentsType[]) => {
 		cateringEstablishments.value = handleSortPlaces(placesToSort, selectValue.value);
 	};
 

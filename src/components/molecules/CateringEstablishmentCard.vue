@@ -3,25 +3,15 @@ import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import IconButton from '@/components/atoms/IconButton.vue';
 
 import { basePath } from '@/utils/base-path';
+import type { CatetingEstablishmentsType } from '@/types/types';
 
-defineProps({
-	cateringEstablishment: {
-		type: Object,
-		required: true,
-	},
-	index: {
-		type: Number,
-	},
-	handleVisitedStatus: {
-		type: Function,
-	},
-	handleFavouritesStatus: {
-		type: Function,
-	},
-	handleOpenModal: {
-		type: Function,
-	},
-});
+defineProps<{
+	cateringEstablishment: CatetingEstablishmentsType,
+	index: number,
+	handleVisitedStatus: (index: number, id: string) => void,
+	handleFavouritesStatus: (index: number, id: string) => void,
+	handleOpenModal: (e: MouseEvent, id: string) => void,
+}>();
 
 const currentDay = new Date().getDay();
 </script>

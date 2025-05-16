@@ -2,6 +2,12 @@
 import SortSelect from '@/components/atoms/SortSelect.vue';
 import SearchInput from '@/components/atoms/SearchInput.vue';
 import CateringEstablishmentsCards from '@/components/organisms/CateringEstablishmentsCards.vue';
+
+const { category, type } = defineProps<{
+	category: string,
+	type: string,
+}>()
+
 </script>
 
 <template>
@@ -10,7 +16,7 @@ import CateringEstablishmentsCards from '@/components/organisms/CateringEstablis
 			<SortSelect />
 			<SearchInput />
 		</div>
-		<CateringEstablishmentsCards />
+		<CateringEstablishmentsCards :category :type />
 	</div>
 </template>
 

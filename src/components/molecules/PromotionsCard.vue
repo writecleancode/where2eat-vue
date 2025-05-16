@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
+import type { PromotionsDataType } from '@/types/types';
 
-defineProps({
-	promotionItem: {
-		type: Object,
-		required: true,
-	},
-});
+defineProps<{
+	promotionItem: PromotionsDataType,
+}>();
 </script>
 
 <template>

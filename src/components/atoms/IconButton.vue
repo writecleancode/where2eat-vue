@@ -1,19 +1,10 @@
 <script setup lang="ts">
-defineProps({
-	label: {
-		type: String,
-	},
-	iconUrl: {
-		type: String,
-	},
-	activeIconUrl: {
-		type: String,
-	},
-	isActive: {
-		type: Boolean,
-		default: false,
-	},
-});
+const { isActive = false } = defineProps<{
+	label: string,
+	iconUrl: string,
+	activeIconUrl: string,
+	isActive?: boolean,
+}>();
 </script>
 
 <template>

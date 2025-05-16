@@ -8,17 +8,17 @@ import { navCategories } from '@/data/navCategories';
 import { useNavContext } from '@/providers/navProvider';
 import { useCategoryContext } from '@/providers/categoryProvider';
 import { useTypeContext } from '@/providers/typeProvider';
-import { basePath } from '@/utils/base-path';
+import { computed } from 'vue';
 
-defineProps({
-	isDesktop: {
-		type: Boolean,
-	},
-});
+const { isDesktop = false } = defineProps<{
+	isDesktop?: boolean
+}>();
 
 const { closeMobileNav } = useNavContext();
 const { currentCategory } = useCategoryContext();
 const { currentType } = useTypeContext();
+
+const category = computed(() => currentCategory.value || navCategories[0].path);
 
 const createPath = (basePath: string, category: string, type: string) => {
 	category = category || navCategories[0].path;
@@ -31,7 +31,7 @@ const createPath = (basePath: string, category: string, type: string) => {
 	<NavButtonsWrapper :isDesktop>
 		<StyledNavLink
 			v-for="cateringEstabilishmentsType in cateringEstabilishmentsTypes"
-			:to="createPath(basePath, currentCategory, cateringEstabilishmentsType.path)"
+			:to="{ name: 'catering-establishments', params: { category, type: cateringEstabilishmentsType.path }}"
 			:key="cateringEstabilishmentsType.value"
 			:isActive="currentType === cateringEstabilishmentsType.path"
 			:isReversed="true"

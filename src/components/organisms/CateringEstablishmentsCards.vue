@@ -5,6 +5,7 @@ import Modal from './Modal.vue';
 import CateringEstablishmentDetails from '@/components/molecules/CateringEstablishmentDetails.vue';
 import NoResultsText from '@/components/atoms/NoResultsText.vue';
 
+import type { CatetingEstablishmentsType } from '@/types/types';
 import { navCategories } from '@/data/navCategories';
 import { cateringEstabilishmentsTypes } from '@/data/cateringEstabilishmentsTypes';
 import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
@@ -14,12 +15,16 @@ import { useModal } from '@/composables/useModal';
 import { useError } from '@/composables/useError';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { basePath } from '@/utils/base-path';
 import axios from 'axios';
+
+const props = defineProps<{
+	category: string,
+	type: string,
+}>()
 
 const { cateringEstablishments, getSortedCateringEstablishments, isLoading, toggleVisitedStatus, toggleFavouriteStaus, isSearchActive } =
 	useCateringEstablishmentsContext();
-const currentPlace = ref({});
+const currentPlace = ref<CatetingEstablishmentsType | null>(null);
 const router = useRouter();
 const route = useRoute();
 const { isModalOpen, handleOpenModal, closeModal } = useModal();
@@ -32,7 +37,7 @@ const handleVisitedStatus = async (index: number, id: string) => {
 
 	try {
 		await axios.post('/visited', { clickedId: id });
-		if (route.params.category === 'unvisited') getSortedCateringEstablishments(route.params.category, route.params.type as string);
+		if (props.category === 'unvisited') getSortedCateringEstablishments(props.category, props.type);
 	} catch (error) {
 		console.log(error);
 	}
@@ -43,7 +48,7 @@ const handleFavouritesStatus = async (index: number, id: string) => {
 
 	try {
 		await axios.post('/favourites', { clickedId: id });
-		if (route.params.category === 'favourites') getSortedCateringEstablishments(route.params.category, route.params.type as string);
+		if (props.category === 'favourites') getSortedCateringEstablishments(props.category, props.type);
 	} catch (error) {
 		console.log(error);
 	}
@@ -56,12 +61,12 @@ const handleDisplayPlaceDetails = (e: MouseEvent, placeId: string) => {
 };
 
 const handleDisplayCateringEstablishments = () => {
-	if (route.params.category && route.params.type) {
-		getSortedCateringEstablishments(route.params.category as string, route.params.type as string);
+	if (props.category && props.type) {
+		getSortedCateringEstablishments(props.category, props.type);
 	}
 
-	route.params.category && setCategory(route.params.category as string);
-	route.params.type && setType(route.params.type as string);
+	props.category && setCategory(props.category);
+	props.type && setType(props.type);
 };
 
 onMounted(() => {
@@ -74,15 +79,15 @@ watch(route, () => {
 
 watch(cateringEstablishments, () => {
 	cateringEstablishments.value.length === 0
-		? displayErrorMessage(route.params.category as string, route.params.type as string, isSearchActive.value)
+		? displayErrorMessage(props.category, props.type, isSearchActive.value)
 		: clearErrorMessage();
 });
 
-if (!route.params.category) {
-	router.push(`${basePath}/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`);
+if (!props.category) {
+	router.push({ name: 'catering-establishments', params: { category: navCategories[0].path, type: cateringEstabilishmentsTypes[0].path }});
 }
-if (route.params.category && route.params.category !== 'ongoing-promotions' && !route.params.type) {
-	router.push(`${basePath}/${route.params.category}/${cateringEstabilishmentsTypes[0].path}`);
+if (props.category && props.category !== 'ongoing-promotions' && !props.type) {
+	router.push({ name: 'catering-establishments', params: { category: props.category, type: cateringEstabilishmentsTypes[0].path }});
 }
 </script>
 

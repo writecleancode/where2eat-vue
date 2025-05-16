@@ -1,10 +1,7 @@
 <script setup lang="ts">
-defineProps({
-	isDesktop: {
-		type: Boolean,
-		default: false,
-	},
-});
+const { isDesktop = false } = defineProps<{
+	isDesktop?: boolean,
+}>();
 </script>
 
 <template>

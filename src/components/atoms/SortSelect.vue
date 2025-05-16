@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import ArrowDown from '@/assets/icons/ArrowDown.vue';
 
-import type { sortOptionsType } from '@/types/types';
+import type { SortOptionsType } from '@/types/types';
 import { onMounted, ref, watch } from 'vue';
 import { useCateringEstablishmentsContext } from '@/providers/cateringEstablishmentsProvider';
 import { usePlaces } from '@/hooks/usePlaces';
 import { useSort } from '@/hooks/useSort';
 
-const sortOptions = ref<sortOptionsType[]>([]);
+const sortOptions = ref<SortOptionsType[]>([]);
 const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useCateringEstablishmentsContext();
 const { getSortOptions } = usePlaces();
 const { handleSortPlaces } = useSort();
