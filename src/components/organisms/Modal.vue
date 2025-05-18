@@ -3,8 +3,8 @@ import { onClickOutside, type MaybeElement, type OnClickOutsideHandler } from '@
 import { useTemplateRef } from 'vue';
 
 const { isModalOpen = false, closeModal } = defineProps<{
-	isModalOpen?: boolean,
-	closeModal: () => void,
+	isModalOpen?: boolean;
+	closeModal: () => void;
 }>();
 
 const modal = useTemplateRef<MaybeElement>('my-modal');

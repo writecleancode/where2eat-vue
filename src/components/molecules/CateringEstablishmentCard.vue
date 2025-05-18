@@ -6,11 +6,11 @@ import { basePath } from '@/utils/base-path';
 import type { CatetingEstablishmentsType } from '@/types/types';
 
 defineProps<{
-	cateringEstablishment: CatetingEstablishmentsType,
-	index: number,
-	handleVisitedStatus: (index: number, id: string) => void,
-	handleFavouritesStatus: (index: number, id: string) => void,
-	handleOpenModal: (e: MouseEvent, id: string) => void,
+	cateringEstablishment: CatetingEstablishmentsType;
+	index: number;
+	handleVisitedStatus: (index: number, id: string) => void;
+	handleFavouritesStatus: (index: number, id: string) => void;
+	handleOpenModal: (e: MouseEvent, id: string) => void;
 }>();
 
 const currentDay = new Date().getDay();

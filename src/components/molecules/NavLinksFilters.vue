@@ -11,7 +11,7 @@ import { useTypeContext } from '@/providers/typeProvider';
 import { computed } from 'vue';
 
 const { isDesktop = false } = defineProps<{
-	isDesktop?: boolean
+	isDesktop?: boolean;
 }>();
 
 const { closeMobileNav } = useNavContext();
@@ -31,7 +31,7 @@ const createPath = (basePath: string, category: string, type: string) => {
 	<NavButtonsWrapper :isDesktop>
 		<StyledNavLink
 			v-for="cateringEstabilishmentsType in cateringEstabilishmentsTypes"
-			:to="{ name: 'catering-establishments', params: { category, type: cateringEstabilishmentsType.path }}"
+			:to="{ name: 'catering-establishments', params: { category, type: cateringEstabilishmentsType.path } }"
 			:key="cateringEstabilishmentsType.value"
 			:isActive="currentType === cateringEstabilishmentsType.path"
 			:isReversed="true"

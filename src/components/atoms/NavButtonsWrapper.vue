@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { isDesktop = false } = defineProps<{
-	isDesktop?: boolean,
+	isDesktop?: boolean;
 }>();
 </script>
 

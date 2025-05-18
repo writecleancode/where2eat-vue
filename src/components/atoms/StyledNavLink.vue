@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const { isActive = false, isReversed = false, isDisabled = false } = defineProps<{
-	to: Record<string, any>,
-	isActive?: boolean,
-	isReversed?: boolean,
-	isDisabled?: boolean,
+const {
+	isActive = false,
+	isReversed = false,
+	isDisabled = false,
+} = defineProps<{
+	to: Record<string, any>;
+	isActive?: boolean;
+	isReversed?: boolean;
+	isDisabled?: boolean;
 }>();
 </script>
 

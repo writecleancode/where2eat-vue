@@ -4,10 +4,9 @@ import SearchInput from '@/components/atoms/SearchInput.vue';
 import CateringEstablishmentsCards from '@/components/organisms/CateringEstablishmentsCards.vue';
 
 const { category, type } = defineProps<{
-	category: string,
-	type: string,
-}>()
-
+	category: string;
+	type: string;
+}>();
 </script>
 
 <template>

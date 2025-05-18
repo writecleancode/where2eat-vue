@@ -18,9 +18,9 @@ import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
 
 const props = defineProps<{
-	category: string,
-	type: string,
-}>()
+	category: string;
+	type: string;
+}>();
 
 const { cateringEstablishments, getSortedCateringEstablishments, isLoading, toggleVisitedStatus, toggleFavouriteStaus, isSearchActive } =
 	useCateringEstablishmentsContext();
@@ -78,16 +78,14 @@ watch(route, () => {
 });
 
 watch(cateringEstablishments, () => {
-	cateringEstablishments.value.length === 0
-		? displayErrorMessage(props.category, props.type, isSearchActive.value)
-		: clearErrorMessage();
+	cateringEstablishments.value.length === 0 ? displayErrorMessage(props.category, props.type, isSearchActive.value) : clearErrorMessage();
 });
 
 if (!props.category) {
-	router.push({ name: 'catering-establishments', params: { category: navCategories[0].path, type: cateringEstabilishmentsTypes[0].path }});
+	router.push({ name: 'catering-establishments', params: { category: navCategories[0].path, type: cateringEstabilishmentsTypes[0].path } });
 }
 if (props.category && props.category !== 'ongoing-promotions' && !props.type) {
-	router.push({ name: 'catering-establishments', params: { category: props.category, type: cateringEstabilishmentsTypes[0].path }});
+	router.push({ name: 'catering-establishments', params: { category: props.category, type: cateringEstabilishmentsTypes[0].path } });
 }
 </script>
 

@@ -3,7 +3,7 @@ import StyledPlaceName from '@/components/atoms/StyledPlaceName.vue';
 import type { PromotionsDataType } from '@/types/types';
 
 defineProps<{
-	promotionItem: PromotionsDataType,
+	promotionItem: PromotionsDataType;
 }>();
 </script>
 

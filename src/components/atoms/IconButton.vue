@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const { isActive = false } = defineProps<{
-	label: string,
-	iconUrl: string,
-	activeIconUrl: string,
-	isActive?: boolean,
+	label: string;
+	iconUrl: string;
+	activeIconUrl?: string;
+	isActive?: boolean;
 }>();
 </script>
 

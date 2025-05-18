@@ -6,8 +6,8 @@ import type { CatetingEstablishmentsType } from '@/types/types';
 import { basePath } from '@/utils/base-path';
 
 defineProps<{
-	cateringEstablishment: CatetingEstablishmentsType | null,
-	closeModal: () => void,
+	cateringEstablishment: CatetingEstablishmentsType | null;
+	closeModal: () => void;
 }>();
 </script>
 
