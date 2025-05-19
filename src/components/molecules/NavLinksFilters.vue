@@ -19,12 +19,6 @@ const { currentCategory } = useCategoryContext();
 const { currentType } = useTypeContext();
 
 const category = computed(() => currentCategory.value || navCategories[0].path);
-
-const createPath = (basePath: string, category: string, type: string) => {
-	category = category || navCategories[0].path;
-
-	return `${basePath}/${category}/${type}`;
-};
 </script>
 
 <template>
